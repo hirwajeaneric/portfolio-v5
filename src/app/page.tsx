@@ -9,7 +9,6 @@ import { SocialAccounts } from "@/database/socialAccounts";
 import { Testimonials } from "@/database/testimonials";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { ArrowDownIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { BsMedium } from "react-icons/bs";
 
