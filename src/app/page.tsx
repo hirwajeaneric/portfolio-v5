@@ -1,6 +1,7 @@
 import BlurFade from "@/components/ui/blur-fade";
 import { IconCloudComponent } from "@/components/widgets/IconCloudComponent";
 import ProjectDisplayCard from "@/components/widgets/ProjectDisplayCard";
+import ScrolledSection from "@/components/widgets/ScrolledSection";
 import TestimonialCard from "@/components/widgets/TestimonialCard";
 import WorkProcess from "@/components/widgets/WorkProcess";
 import projects from "@/database/projects";
@@ -8,7 +9,7 @@ import { MyServices } from "@/database/services";
 import { SocialAccounts } from "@/database/socialAccounts";
 import { Testimonials } from "@/database/testimonials";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { ArrowDownIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { BsMedium } from "react-icons/bs";
 
@@ -117,7 +118,7 @@ export default function page() {
                         <span className="">What my</span>
                         <em className="pt-serif-regular-italic"> clients say</em>
                     </h3>
-                    <p className="text-center text-lg">See what my clients have to say about working with me <br />and the results I helped them achieve</p>
+                    <p className="text-center text-lg">See what my clients have to say about working with me <br />and the results I helped them achieve.</p>
                 </div>
                 <div className="flex justify-between items-start mt-12 w-full flex-wrap">
                     {Testimonials.map((testimonal, index) => (<TestimonialCard key={index} testimonial={testimonal} />))}
@@ -128,10 +129,10 @@ export default function page() {
                     <p className="text-8xl w-full md:w-1/2 text-center md:text-start md:text-9xl mb-0 pt-serif-regular-italic font-light">Jean Eric</p>
                     <p className="text-8xl w-full md:w-1/2 text-center md:text-end md:text-9xl mt-0 font-light">Hirwa</p>
                 </div>
-                <div className="max-w-screen-xl px-4 flex w-full justify-between items-start flex-wrap gap-8">
+                <div className="max-w-screen-xl px-4 flex w-full justify-between items-start flex-wrap md:flex-nowrap gap-8">
                     <h3 className="w-full md:w-[48%] text-4xl md:text-5xl flex flex-col font-extralight text-zinc-800 dark:text-zinc-300">
-                        <span className="">A website that leaves</span>
-                        <em className="pt-serif-regular-italic">a lasting impression</em>
+                        <span className="">Let&apos; build a solution that</span>
+                        <em className="pt-serif-regular-italic">leaves a lasting impression</em>
                     </h3>
                     <div className="w-full md:w-[48%] flex flex-col justify-start items-start gap-8">
                         <p className="text-lg">
@@ -149,6 +150,21 @@ export default function page() {
                         </div>
                     </div>
                 </div>
+            </section>
+            <section className="flex flex-col mx-auto justify-center items-center w-full py-24 lg:py-36">
+                <ScrolledSection />
+            </section>
+            <section id="process" className="max-w-screen-xl flex flex-col mx-auto justify-center items-center w-full px-4 gap-12 mt-2 mb-28 md:mb-36">
+                <h3 className="text-lg font-semibold">PROJECT IN MIND?</h3>
+                <h4 className="text-6xl md:text-9xl flex flex-col font-extralight items-center text-zinc-800 dark:text-zinc-300">
+                    <span className="text-center">Let&apos;s make your</span>
+                    <em className="pt-serif-regular-italic"> Website shine</em>
+                </h4>
+                <p className="text-center text-lg w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</p>
+                <Link href={'/contact'} className="px-4 py-3 flex items-center justify-between bg-background w-fit text-center text-foreground dark:bg-zinc-200 dark:text-zinc-800 text-sm">
+                    <span>GET IN TOUCH</span>
+                    <ArrowRightIcon className="ml-2 -rotate-45" />
+                </Link>
             </section>
         </div>
     )
