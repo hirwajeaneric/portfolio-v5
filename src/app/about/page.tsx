@@ -1,3 +1,4 @@
+import { AwardsAndCertificates } from "@/database/awards";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { ArrowDownIcon, ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -33,7 +34,7 @@ export default function page() {
               ABOUT ME
             </span>
           </Link>
-          <div className="flex flex-col gap-3 mt-16 md:mt-32 md:gap-6 w-full p-6 md:p-16 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+          <div className="flex flex-col gap-3 mt-16 md:mt-32 md:gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
             <h2 className="text-zinc-300 uppercase">Jean Eric Hirwa</h2>
             <h3 className="text-zinc-300 text-4xl leading-normal md:font-light">Your Partner in Bringing Your Web Design Vision to Life</h3>
             <p className="mb-8">
@@ -73,6 +74,27 @@ export default function page() {
               </div>
               <ArrowRightIcon />
             </Link>
+          </div>
+          <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+            <h2 className="text-zinc-300 uppercase">Award & Certificates</h2>
+            <div className="flex flex-col w-full">
+              {AwardsAndCertificates.map((award, index) => {
+                if (index !== AwardsAndCertificates.length - 1) {
+                  return (
+                    <div key={index} className="flex items-center justify-between gap-1 md:gap-6 w-full py-4 md:py-6 border-b border-b-zinc-200 dark:border-b-zinc-700">
+                      <h4 className="text-zinc-300 text-base md:text-lg">{award.name}</h4>
+                      <p className="text-zinc-300 text-sm md:text-base">{award.year}</p>
+                    </div>
+                  )
+                }
+                return (
+                  <div key={index} className="flex items-center justify-between gap-1 md:gap-6 w-full py-4 md:py-6">
+                    <h4 className="text-zinc-300 text-base md:text-lg">{award.name}</h4>
+                    <p className="text-zinc-300 text-sm md:text-base">{award.year}</p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
