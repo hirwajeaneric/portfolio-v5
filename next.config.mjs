@@ -67,6 +67,7 @@ const nextConfig = {
       "shecancodeschool.org",
     ],
   },
+  // output: "standalone",
 };
 
 export default nextConfig;
