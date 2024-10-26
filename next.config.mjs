@@ -56,18 +56,8 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-    ],
-    domains: [
-      "lh3.googleusercontent.com",
-      "firebasestorage.googleapis.com",
-      "res.cloudinary.com",
-      "avatars.githubusercontent.com",
-      "i.ibb.co",
-      "images.unsplash.com",
-      "shecancodeschool.org",
-    ],
-  },
-  // output: "standalone",
+    ]
+  }
 };
 
 export default nextConfig;

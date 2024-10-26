@@ -14,6 +14,7 @@ type ProjectLinks = {
 
 export interface ProjectTypes {
     name: string,
+    category: "Design" | "Web" | "Mobile" | "Writings" | "Startups" | "Software" | "Other",
     description: string,
     link: string,
     image: string,
@@ -26,6 +27,7 @@ export interface ProjectTypes {
 const projects: ProjectTypes[] = [
     {
         name: "SheCanCODE Bootcamp",
+        category: "Web",
         slug: 'shecancode-bootcamp',
         description: "A personal portfolio showcasing projects and skills using React, TypeScript, and CSS.",
         link: "https://www.shecancodeschool.org/",
@@ -43,6 +45,7 @@ const projects: ProjectTypes[] = [
     },
     {
         name: "Trash Mark",
+        category: "Web",
         slug: "trash-mark",
         description: "A full-stack e-commerce application with product listings, cart functionality, and payment integration.",
         link: "https://ecommerceapp.com",
@@ -60,6 +63,7 @@ const projects: ProjectTypes[] = [
     },
     {
         name: "Quick Sacco",
+        category: "Mobile",
         slug: "quick-sacco",
         description: "A mobile app that allows users to manage bank accounts, check balances, and perform transactions.",
         link: "https://mobilebankapp.com",
@@ -77,6 +81,7 @@ const projects: ProjectTypes[] = [
     },
     {
         name: "EBSDS",
+        category: "Web",
         slug: "ebsds",
         description: "A task management web app with task tracking, progress updates, and notifications.",
         link: "https://taskmanagerapp.com",
@@ -94,6 +99,7 @@ const projects: ProjectTypes[] = [
     },
     {
         name: "Cement Swift",
+        category: "Web",
         slug: "cement-swift",
         description: "A full-featured blog platform where users can create, edit, and share blog posts.",
         link: "https://blogplatform.com",
