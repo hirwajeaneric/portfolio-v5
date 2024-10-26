@@ -28,7 +28,7 @@ export default function page() {
               <input type="text" name="name" id="name" placeholder="Name" className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm" />
               <input type="email" name="email" id="email" placeholder="Email" className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm mt-4" />
               <textarea name="message" id="message" placeholder="Message" rows={4} className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm mt-4" />
-              <button type="submit" className="w-full p-2 md:p-4 bg-zinc-300 rounded-sm mt-4 text-black  text-xl font-semibold">Send Message</button>
+              <button type="submit" className="w-full p-2 md:p-4 bg-zinc-300 rounded-sm mt-4 text-black text-base md:text-xl font-semibold">Send Message</button>
             </form>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 w-full justify-between">

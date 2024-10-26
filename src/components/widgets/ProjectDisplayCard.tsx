@@ -20,7 +20,7 @@ export default function ProjectDisplayCard({ project }: { project: ProjectTypes 
       >
         <div className="dark:bg-zinc-800 bg-zinc-300 px-3 md:px-4 py-2 md:py-3 m-2 md:m-4 flex justify-between text-center items-center border border-zinc-800 dark:border-zinc-600">
           <h3 className="capitalize text-lg text-left md:text-xl">{project.name}</h3>
-          <span className="hover:underline text-nowrap uppercase text-zinc-300 text-sm">{project.category}</span>
+          <span className="text-nowrap uppercase text-zinc-300 text-sm">{project.category}</span>
         </div>
       </Link>
 
@@ -37,7 +37,7 @@ export default function ProjectDisplayCard({ project }: { project: ProjectTypes 
         </Link>
         <div className="dark:bg-zinc-800 bg-zinc-300 px-3 md:px-4 py-2 md:py-3 m-2 md:m-4 flex justify-between text-center items-center border border-zinc-800 dark:border-zinc-600">
           <h3 className="capitalize text-lg text-left md:text-xl">{project.name}</h3>
-          <span className="hover:underline text-nowrap uppercase text-zinc-300 text-sm">{project.category}</span>
+          <span className="text-nowrap uppercase text-zinc-300 text-sm">{project.category}</span>
         </div>
       </div>
     </>

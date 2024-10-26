@@ -25,7 +25,7 @@ export default function page() {
             <span className="">Jean Eric</span>
             <em className="pt-serif-regular-italic">Hirwa</em>
           </h1>
-          <p className="mt-4 md:mt-8 mb-12 md:mb-20 text-base md:text-2xl text-center md:text-start leading-relaxed text-zinc-300">Premium web design, development, and SEO services to help your business stand out</p>
+          <h2 className="mt-4 md:mt-8 mb-12 md:mb-20 text-base md:text-2xl text-center md:text-start leading-relaxed text-zinc-400">Premium web design, development, and SEO services to help your business stand out</h2>
           <Link href="#services" className="flex items-center justify-center text-zinc-300 gap-4">
             <span className="border border-zinc-800 dark:border-zinc-500 p-3 rounded-full bg-zinc-300 dark:bg-zinc-700">
               <ArrowDownIcon className="" />

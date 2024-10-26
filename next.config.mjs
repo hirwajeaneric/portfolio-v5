@@ -55,7 +55,7 @@ const nextConfig = {
         hostname: "shecancodeschool.org",
         port: "",
         pathname: "/**",
-      },
+      }
     ]
   }
 };

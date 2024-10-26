@@ -40,7 +40,7 @@ export default function page() {
                     <h2 className="text-center text-3xl md:text-5xl mt-10">A Full Stack Software Developer</h2>
                 </BlurFade>
                 <BlurFade delay={0.25 * 2} inView>
-                    <p className="text-center text-xl text-wrap md:text-2xl mt-4">I design and build software and systems that respond to user needs and vision.</p>
+                    <h3 className="text-center text-xl text-wrap md:text-2xl mt-4">I design and build software and systems that respond to user needs and vision.</h3>
                 </BlurFade>
                 <BlurFade delay={0.25 * 2} inView>
                     <Link href="#skills" className="flex items-center justify-center gap-4 mt-24">
