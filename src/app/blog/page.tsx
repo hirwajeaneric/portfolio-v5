@@ -16,7 +16,7 @@ export default function page() {
           {Articles.map((article, index) => {
             return (
               <Suspense fallback={<CardSkeleton />} key={index}>
-                <Link href={`/blog/${article.slug}`} className="cursor-pointer flex flex-col p-10 justify-between gap-8 w-full bg-zinc-800 border border-zinc-500 group">
+                <Link href={`/blog/${article.slug}`} className="cursor-pointer flex flex-col p-7 md:p-10 justify-between gap-8 w-full bg-zinc-800 border border-zinc-500 group">
                   <Image src={article.coverimage} alt={article.title} height={400} width={1000} className="border border-zinc-300" />
                   <div className="flex flex-col gap-2">
                     <p className="text-zinc-500">{new Date(article.createdAt).toDateString()}</p>
