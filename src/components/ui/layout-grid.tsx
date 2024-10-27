@@ -20,15 +20,15 @@ export const LayoutGrid = ({ cards }: { cards: Gallery[] }) => {
     };
 
     return (
-        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 relative">
+        <div className="w-full max-w-screen-2xl h-full grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 relative">
             {cards.map((card, i) => (
-                <div key={i} className={"col-span-1 border border-zinc-500"}>
+                <div key={i} className={"col-span-1 h-72 md:h-72 lg:h-96 border border-zinc-500"}>
                     <motion.div
                         onClick={() => handleClick(card)}
                         className={cn(
                             "col-span-1 relative overflow-hidden h-auto",
                             selected?.id === card.id
-                                ? " cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
+                                ? " cursor-pointer absolute h-72 md:h-72 lg:h-96 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                                 : lastSelected?.id === card.id
                                     ? "z-40 bg-white h-full w-full"
                                     : "bg-white  h-full w-full"

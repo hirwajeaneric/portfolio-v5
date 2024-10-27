@@ -1,5 +1,6 @@
 import { getGallery, getWork } from "@/actions/works";
 import { LayoutGrid } from "@/components/ui/layout-grid";
+import { cn } from "@/lib/utils";
 import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,17 +11,28 @@ export default async function page({ params }: { params: { slug: string } }) {
   const work = await getWork(slug);
   if (!work) return null;
   const gallery = await getGallery(work.id);
+  var availableLinks = 2;
+  if (work.otherLinks[0].link) availableLinks++;
+  if (work.otherLinks[1].link) availableLinks++;
 
   return (
     <div className="flex flex-col items-center justify-start w-full scroll-smooth" >
       <section id="process" className="max-w-screen-xl flex flex-col mx-auto justify-center items-center pt-40 md:pt-48 pb-0 w-full px-4">
         <h1 className="text-5xl md:text-7xl flex flex-col font-extralight text-center text-zinc-800 dark:text-zinc-300">{work?.name}</h1>
         <h2 className="text-center mt-3 md:mt-6 mb-8 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">{work?.description}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full md:w-3/4 py-3 items-center justify-between">
-          <ProjectInfoCard title="CLIENT" value={work?.client || ''} />
+        <div className={cn(availableLinks === 3 ? "lg:grid-cols-3" : availableLinks === 4 ? "lg:grid-cols-4" : "lg:grid-cols-2","grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 w-full md:w-3/4 py-3 items-center justify-between")}>
           <ProjectInfoCard title="TIMELINE" value={work?.timeline || ''} />
           <ProjectInfoCard title="CATEGORY" value={work?.category || ''} />
-          <ProjectInfoCard title="LINK" value={work?.link || ''} />
+          {work?.otherLinks[0].link &&
+            <Link href={work?.otherLinks[0].link || ''} target="_blank" rel="noopener noreferrer">
+              <ProjectInfoCard title="SOURCE CODE" value={work?.otherLinks[0].name || 'Unavailable'} isLink />
+            </Link>
+          }
+          {work?.otherLinks[1].link &&
+            <Link href={work?.otherLinks[1].link || ''} target="_blank" rel="noopener noreferrer">
+              <ProjectInfoCard title="LIVE DEMO" value={work?.name || 'Unavailable'} isLink />
+            </Link>
+          }
         </div>
         <Link href="#details" className="flex text-sm items-center justify-center text-zinc-300 gap-4 mt-5 md:mt-10">
           <span className="border border-zinc-800 dark:border-zinc-500 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
@@ -51,7 +63,7 @@ export default async function page({ params }: { params: { slug: string } }) {
             <h3 className="text-4xl text-zinc-300 my-2 md:my-10">Gallery</h3>
           </div>
           <section className="w-screen p-4 gap-10 mb-16 md:mb-32">
-            <div className="h-screen w-full">
+            <div className="w-full">
               <LayoutGrid cards={gallery} />
             </div>
           </section>
@@ -60,9 +72,9 @@ export default async function page({ params }: { params: { slug: string } }) {
     </div>
   )
 }
-const ProjectInfoCard = ({ title, value }: { title: string, value: string }) => {
+const ProjectInfoCard = ({ title, value, isLink }: { title: string, value: string, isLink?: boolean }) => {
   return (
-    <div className="flex flex-col gap-1 items-center bg-zinc-800 border border-zinc-700 py-3 px-4">
+    <div className={cn(isLink ? "border border-zinc-300" : "border border-zinc-700", "flex flex-col gap-1 items-center bg-zinc-800 py-3 px-4")}>
       <h3 className="text-zinc-500">{title}</h3>
       <p className="uppercase text-sm text-center font-bold text-zinc-200">{value}</p>
     </div>
