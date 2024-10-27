@@ -8,8 +8,8 @@ export default function page() {
         <h1 className="text-5xl md:text-8xl flex flex-col font-extralight items-center text-zinc-800 dark:text-zinc-300">
           <span className="text-center">Work</span>
         </h1>
-        <p className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-lg w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</p>
-        <div className="flex flex-wrap gap-4 mt-10 w-full justify-between">
+        <h2 className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</h2>
+        <div className="flex flex-wrap gap-4 md:mt-10 w-full justify-between">
           {projects.map((project) => <ProjectDisplayCard key={project.name} project={project} />) || <>No projects found</>}
         </div>
       </section>

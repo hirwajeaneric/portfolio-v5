@@ -206,7 +206,7 @@ export default function page() {
           <span className="text-center">Software Development</span>
           <em className="pt-serif-regular-italic">& Digital Arts</em>
         </h1>
-        <p className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-lg w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</p>
+        <h2 className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</h2>
         <Link href="#services" className="flex items-center justify-center text-zinc-300 gap-4">
           <span className="border border-zinc-800 dark:border-zinc-500 p-3 rounded-full bg-zinc-300 dark:bg-zinc-700">
             <ArrowDownIcon className="" />
@@ -272,3 +272,6 @@ export default function page() {
     </div>
   )
 }
+
+
+// index+1 === services.length - 1 ? "": "border-b border-zinc-200 dark:border-zinc-700"

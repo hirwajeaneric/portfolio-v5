@@ -11,8 +11,8 @@ export default function TestimonialCard({ testimonial }: Props) {
       <Image src={testimonial.logo} height={60} width={60} alt="" />
       <h3 className="text-start text-2xl mt-6 mb-4">{testimonial.title}</h3>
       <p className="text-start">{testimonial.description}</p>
-      <div className="flex justify-start mt-8 gap-6 items-center">
-        <Image src={`/${testimonial.image}`} height={80} width={80} className="rounded-full" alt="" />
+      <div className="flex justify-start mt-8 gap-4 items-center">
+        <Image src={`/${testimonial.image}`} height={60} width={60} className="rounded-full" alt="" />
         <div className="flex flex-col items-start justify-start">
           <h4 className="text-lg font-semibold">{testimonial.name}</h4>
           <p>{testimonial.role}</p>
