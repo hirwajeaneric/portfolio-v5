@@ -8,7 +8,7 @@ import { MyServices } from "@/database/services";
 import { SocialAccounts } from "@/database/socialAccounts";
 import { Testimonials } from "@/database/testimonials";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
+import { ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
 import { BsMedium } from "react-icons/bs";
 
@@ -40,12 +40,12 @@ export default function page() {
                     <h2 className="text-center text-3xl md:text-5xl mt-10">A Full Stack Software Developer</h2>
                 </BlurFade>
                 <BlurFade delay={0.25 * 2} inView>
-                    <h3 className="text-center text-xl text-wrap md:text-2xl mt-4">I design and build software and systems that respond to user needs and vision.</h3>
+                    <p className="text-center text-xl text-wrap md:text-2xl mt-4">I design and build software and systems that respond to user needs and vision.</p>
                 </BlurFade>
                 <BlurFade delay={0.25 * 2} inView>
                     <Link href="#skills" className="flex items-center justify-center gap-4 mt-24">
-                        <span className="border-2 border-zinc-800 dark:border-zinc-400 dark:hover:border-zinc-200 p-3 rounded-full ">
-                            <ArrowDownIcon className="hover:-rotate-90 transition-transform duration-300" />
+                        <span className="border border-zinc-800 dark:border-zinc-500 p-3 rounded-full bg-zinc-300 dark:bg-zinc-700">
+                            <ArrowDownIcon className="" />
                         </span>
                         <span className="text-center text-lg">
                             MY SERVICES
@@ -58,24 +58,22 @@ export default function page() {
                     <IconCloudComponent />
                 </div>
                 <div className="flex flex-col gap-8 w-full relative -top-60 -mb-64">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
                         {MyServices.map((service, index) => (
-                            <div key={index} className="border border-zinc-800 flex flex-col justify-between dark:border-zinc-600 p-8 md:p-12 bg-zinc-200 dark:bg-zinc-800">
-                                <div>
-                                    <span className="text-zinc-600 dark:text-zinc-400">0{index + 1}</span>
-                                    <h4 className="text-2xl uppercase">{service.name}</h4>
-                                    <p className="my-4 text-zinc-400">{service.description}</p>
-                                    <ul className="flex flex-wrap gap-2">
-                                        {service.technologies.map((technology) => (
-                                            <li className="text-sm list-inside px-2 py-0 text-zinc-200 hover:bg-zinc-200 hover:dark:bg-zinc-600 bg-zinc-300 dark:bg-zinc-700" key={technology}>{technology}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <Link href={'/services#' + service.slug} className="flex items-center justify-start gap-4 mt-12 group">
-                                    <span className="border border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-200 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
-                                        <ArrowUpIcon className="rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+                            <div key={index} className="border border-zinc-800 dark:border-zinc-600 p-8 md:p-12 bg-zinc-200 dark:bg-zinc-800">
+                                <span className="text-zinc-600 dark:text-zinc-400">0{index + 1}</span>
+                                <h4 className="text-2xl uppercase">{service.name}</h4>
+                                <p className="my-4">{service.description}</p>
+                                <ul className="flex flex-wrap gap-2">
+                                    {service.technologies.map((technology) => (
+                                        <li className="text-sm list-inside px-2 py-0 hover:bg-zinc-200 hover:dark:bg-zinc-600 bg-zinc-300 dark:bg-zinc-700" key={technology}>{technology}</li>
+                                    ))}
+                                </ul>
+                                <Link href={'/services#' + service.slug} className="flex items-center justify-start gap-4 mt-4">
+                                    <span className="border border-zinc-400 dark:border-zinc-700 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
+                                        <ArrowDownIcon className="-rotate-90" />
                                     </span>
-                                    <span className="text-sm">
+                                    <span className="text-center text-base">
                                         ABOUT {service.name.toUpperCase()}
                                     </span>
                                 </Link>
@@ -87,9 +85,9 @@ export default function page() {
             <section id="works" className="max-w-screen-xl flex flex-col mx-auto justify-start items-start w-full pt-32 pb-12 lg:pb-32 px-4">
                 <div className="flex justify-between items-center w-full ">
                     <h3 className="text-3xl md:text-4xl text-zinc-800 dark:text-zinc-300">Selected Work</h3>
-                    <Link href="/work" className="flex items-center justify-center gap-4 group">
-                        <span className="border border-zinc-800 dark:border-zinc-500 dark:hover:border-zinc-200 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
-                            <ArrowUpIcon className="rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+                    <Link href="/work" className="flex items-center justify-center gap-4">
+                        <span className="border border-zinc-800 dark:border-zinc-500 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
+                            <ArrowDownIcon className="-rotate-90" />
                         </span>
                         <span className="text-center text-base md:text-xl">
                             SEE ALL

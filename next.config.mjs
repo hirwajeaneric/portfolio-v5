@@ -55,9 +55,18 @@ const nextConfig = {
         hostname: "shecancodeschool.org",
         port: "",
         pathname: "/**",
-      }
-    ]
-  }
+      },
+    ],
+    domains: [
+      "lh3.googleusercontent.com",
+      "firebasestorage.googleapis.com",
+      "res.cloudinary.com",
+      "avatars.githubusercontent.com",
+      "i.ibb.co",
+      "images.unsplash.com",
+      "shecancodeschool.org",
+    ],
+  },
 };
 
 export default nextConfig;
