@@ -24,6 +24,7 @@ export interface ProjectTypes {
     client: string;
     timeline: string;
     link: string;
+    gallery: string[];
     image: string;
     technologies: Technologies[];
     type: string;
@@ -46,6 +47,13 @@ const projects: ProjectTypes[] = [
         description: "An better and improved version of SheCanCODE Website.",
         link: "https://shecancodeschool.org",
         image: "/shecancode.png",
+        gallery: [
+            "/landing.png",
+            "/benefits.png",
+            "/courses.png",
+            "/articles.png",
+            "/shecancode.png"
+        ],
         technologies: [
             { name: "React", icon: FaReact },
             { name: "TypeScript", icon: SiTypescript },
@@ -75,6 +83,13 @@ const projects: ProjectTypes[] = [
             { name: "React", icon: FaReact },
             { name: "Node.js", icon: FaNodeJs },
             { name: "MongoDB", icon: SiMongodb }
+        ],
+        gallery: [
+            "/landing.png",
+            "/benefits.png",
+            "/courses.png",
+            "/articles.png",
+            "/shecancode.png"
         ],
         type: "Full-stack",
         otherLinks: [

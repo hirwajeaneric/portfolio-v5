@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/widgets/Navbar";
 import Footer from "@/components/widgets/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,8 +18,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Jean Eric Hirwa - Personal Portfolio",
-  description: "Hello, Welcome to my personal portfolio, explore my works, and let's get in touch!",
+  title: {
+    template: "%s - Jean Eric Hirwa Portfolio",
+    default: "Jean Eric Hirwa - Portfolio",
+    
+  },
+  description: "Hello, Welcome to my personal portfolio, explore my works, and let's get in touch! I am a software developer with a passion for building things, both digitally and creatively. He enjoys combining his tech skills with his design background to create innovative solutions. Currently, he is working on empowering women through tech at IRO. Outside of work, he loves exploring new ideas, dancing, and diving into a good book or movie.",
+  keywords: "Jean Eric Hirwa, hirwajeaneric, Hirwa Jean Eric,  software developer, web developer, web design, software engineer, wordpress developer, artist, tech lead, backend engineer, frontend engineer, full-stack developer, fullstack developer, database engineer, Information Technology, Author, Artist"
 };
 
 export default function RootLayout({
@@ -41,6 +47,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
