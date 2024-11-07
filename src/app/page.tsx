@@ -18,12 +18,12 @@ const jsonLd = {
     "name": "Jean Eric Hirwa",
     "url": "https://hirwajeaneric.netlify.app/",
     "description": "Jean Eric Hirwa is a software developer with a passion for building things, both digitally and creatively. He enjoys combining his tech skills with his design background to create innovative solutions. Currently, he is working on empowering women through tech at IRO. Outside of work, he loves exploring new ideas, dancing, and diving into a good book or movie.",
-    "image": "1718313379119.jpeg",
+    "image": "/1718313379119.jpeg",
     "author": {
         "@type": "WebSite",
         "name": "Jean Eric Hirwa",
         "url": "https://hirwajeaneric.netlify.app/",
-        "image": "1718313379119.jpeg",
+        "image": "/1718313379119.jpeg",
         "sameAs": [
             "https://github.com/hirwajeaneric",
             "https://www.linkedin.com/in/jean-eric-hirwa/",

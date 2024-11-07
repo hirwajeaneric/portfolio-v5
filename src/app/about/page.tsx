@@ -30,7 +30,7 @@ const jsonLd = {
   "@type": "Person",
   "name": "Jean Eric Hirwa",
   "url": "https://hirwajeaneric.netlify.app/",
-  "image": "1718313379119.jpeg",
+  "image": "/1718313379119.jpeg",
   "sameAs": [
     "https://github.com/hirwajeaneric",
     "https://www.linkedin.com/in/jean-eric-hirwa/",

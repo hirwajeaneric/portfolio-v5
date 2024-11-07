@@ -34,12 +34,12 @@ const jsonLd = {
   "name": "Services",
   "url": "https://hirwajeaneric.netlify.app/services",
   "description": "Explore my services and see how I can help you bring your ideas to life. From graphic design to web development, I've got you covered.",
-  "image": "1718313379119.jpeg",
+  "image": "/1718313379119.jpeg",
   "creator": {
     "@type": "Person",
     "name": "Jean Eric Hirwa",
     "url": "https://hirwajeaneric.netlify.app/services",
-    "image": "1718313379119.jpeg",
+    "image": "/1718313379119.jpeg",
     "sameAs": [
       "https://github.com/hirwajeaneric",
       "https://www.linkedin.com/in/jean-eric-hirwa/",

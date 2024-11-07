@@ -16,7 +16,7 @@ export const metadata = {
     siteName: "Jean Eric Hirwa - Work",
     images: [
       {
-        url: "1718313379119.jpeg",
+        url: "/1718313379119.jpeg",
         width: 800,
         height: 600,
       },
@@ -30,12 +30,12 @@ const jsonLd = {
   "name": "Work",
   "url": "https://hirwajeaneric.netlify.app/work",
   "description": "Explore my work and see how I can help you bring your ideas to life. From graphic design to web development, I've got you covered.",
-  "image": "1718313379119.jpeg",
+  "image": "/1718313379119.jpeg",
   "creator": {
     "@type": "Person",
     "name": "Jean Eric Hirwa",
     "url": "https://hirwajeaneric.netlify.app/work",
-    "image": "1718313379119.jpeg",
+    "image": "/1718313379119.jpeg",
     "sameAs": [
       "https://github.com/hirwajeaneric",
       "https://www.linkedin.com/in/jean-eric-hirwa/",
