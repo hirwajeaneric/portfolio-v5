@@ -10,3 +10,7 @@ export const getGallery = async (projectId: string) => {
   const gallery = galleries.filter(gallery => gallery.projectId === projectId);
   return gallery;
 }
+
+export const getAllWorks = async () => {
+  return projects;
+}
