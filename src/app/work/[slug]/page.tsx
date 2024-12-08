@@ -46,7 +46,7 @@ const jsonLd = {
 }
 
 export default async function page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const work = await getWork(slug);
   if (!work) return null;

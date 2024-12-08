@@ -49,7 +49,7 @@ const jsonLd = {
 }
 
 export default async function page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = await params;
   const article = await getArticle(slug);
   const relatedArticles = await getArticleByCategory(article?.category || "");
 

@@ -7,6 +7,6 @@ export default function robots() {
                 disallow: '/dashboard'
             },
         ],
-        sitemap: 'https://hirwajeaneric.netlify.app/sitemap.xml'
+        sitemap: 'https://www.erichirwa.com/sitemap.xml'
     }
 }
