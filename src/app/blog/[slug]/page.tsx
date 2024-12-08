@@ -1,4 +1,4 @@
-import { getArticle, getArticleByCategory } from "@/actions/blogs";
+import { getAllArticles, getArticle, getArticleByCategory } from "@/actions/blogs";
 import { CardSkeleton } from "@/components/widgets/CardSkeleton";
 import SocialAccountsGroup from "@/components/widgets/SocialAccountsGroup";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
@@ -6,46 +6,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export const metadata = {
-  title: "Blog",
-  description: "Get the latest insights on some topics I find attractive.",
-  keywords: "Jean Eric Hirwa, hirwajeaneric, Hirwa Jean Eric, Blog, Insights, Software Development, Web Development, Technology, Programming, Coding, Tech, Developer, Web Design, Web Development, Programming, Career",
-  openGraph: {
-    title: "Blog - Jean Eric Hirwa",
-    description: "Get the latest insights on some topics I find attractive.",
-    url: "https://hirwajeaneric.netlify.app/blog",
-    siteName: "Jean Eric Hirwa - Blog",
-    images: [
-      {
-        url: "1718313379119.jpeg",
-        width: 800,
-        height: 600,
-      },
-    ],
-    locale: "en-US",
-    type: "website",
-  }
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map((article) => ({
+    slug: article.slug
+  }));
 }
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "name": "Jean Eric Hirwa - Blog",
-  "url": "https://hirwajeaneric.netlify.app/blog",
-  "description": "Get the latest insights on some topics I find attractive.",
-  "image": "/1718313379119.jpeg",
-  "creator": {
-    "@type": "Person",
-    "name": "Jean Eric Hirwa",
-    "url": "https://hirwajeaneric.netlify.app/",
-    "image": "/1718313379119.jpeg",
-    "sameAs": [
-      "https://github.com/hirwajeaneric",
-      "https://www.linkedin.com/in/jean-eric-hirwa/",
-      "https://medium.com/@hirwajeaneric",
-      "https://www.instagram.com/hirwa_jean_eric/"
-    ]
-  }
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const article = await getArticle(params.slug);
+  
+  return {
+    title: article?.title || "Blog",
+    description: article?.introduction || "Get the latest insights on some topics I find attractive.",
+    openGraph: {
+      title: article?.title || "Blog",
+      description: article?.introduction || "Get the latest insights on some topics I find attractive.",
+      images: [
+        {
+          url: article?.coverimage || "1718313379119.jpeg",
+          width: 800,
+          height: 600,
+        },
+      ],
+    }
+  };
 }
 
 export default async function page({ params }: { params: { slug: string } }) {
@@ -53,17 +38,26 @@ export default async function page({ params }: { params: { slug: string } }) {
   const article = await getArticle(slug);
   const relatedArticles = await getArticleByCategory(article?.category || "");
 
-  metadata.title = article?.title || "Blog";
-  metadata.description = article?.introduction || "Get the latest insights on some topics I find attractive.";
-  metadata.openGraph.title = article?.title || "Blog";
-  metadata.openGraph.description = article?.introduction || "Get the latest insights on some topics I find attractive.";
-  metadata.openGraph.images = [
-    {
-      url: article?.coverimage || "1718313379119.jpeg",
-      width: 800,
-      height: 600,
-    },
-  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "name": article?.title || "Jean Eric Hirwa - Blog",
+    "url": `https://hirwajeaneric.netlify.app/blog/${slug}`,
+    "description": article?.introduction || "Get the latest insights on some topics I find attractive.",
+    "image": article?.coverimage || "/1718313379119.jpeg",
+    "creator": {
+      "@type": "Person",
+      "name": "Jean Eric Hirwa",
+      "url": "https://hirwajeaneric.netlify.app/",
+      "image": "/1718313379119.jpeg",
+      "sameAs": [
+        "https://github.com/hirwajeaneric",
+        "https://www.linkedin.com/in/jean-eric-hirwa/",
+        "https://medium.com/@hirwajeaneric",
+        "https://www.instagram.com/hirwa_jean_eric/"
+      ]
+    }
+  };
 
   return (
     <>

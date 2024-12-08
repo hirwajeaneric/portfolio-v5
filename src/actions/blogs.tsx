@@ -15,3 +15,7 @@ export const getArticleByCategory = async (category: string) => {
     });    
     return selectedArticles;
 }
+
+export const getAllArticles = async () => {
+    return Articles;
+}
