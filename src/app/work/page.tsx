@@ -5,13 +5,13 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Jean Eric Hirwa - Projects",
-  "url": "https://hirwajeaneric.netlify.app/work",
+  "url": "https://www.erichirwa.com/work",
   "description": "Explore my projects and see how I've applied my skills and creativity to create innovative solutions.",
   "image": "/1718313379119.jpeg",
   "creator": {
     "@type": "Person",
     "name": "Jean Eric Hirwa",
-    "url": "https://hirwajeaneric.netlify.app/",
+    "url": "https://www.erichirwa.com",
     "image": "/1718313379119.jpeg",
     "sameAs": [
       "https://github.com/hirwajeaneric",
@@ -29,7 +29,7 @@ export const metadata = {
   openGraph: {
     title: "Projects - Jean Eric Hirwa",
     description: "Explore my projects and see how I've applied my skills and creativity to create innovative solutions.",
-    url: "https://hirwajeaneric.netlify.app/work",
+    url: "https://www.erichirwa.com/work",
     siteName: "Jean Eric Hirwa - Projects",
     images: [
       {

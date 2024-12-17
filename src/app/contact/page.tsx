@@ -8,7 +8,7 @@ export const metadata = {
     openGraph: {
       title: "Contact - Jean Eric Hirwa - Portfolio",
       description: "Get in touch with me, and let's discuss how I can help you.",
-      url: "https://hirwajeaneric.netlify.app/contact",
+      url: "https://www.erichirwa.com/contact",
       siteName: "Jean Eric Hirwa - Contact",
       images: [
         {
@@ -27,13 +27,13 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Jean Eric Hirwa - Contact",
-  "url": "https://hirwajeaneric.netlify.app/contact",
+  "url": "https://www.erichirwa.com/contact",
   "description": "Get in touch with me, and let's discuss how I can help you.",
   "image": "/1718313379119.jpeg",
   "creator": {
     "@type": "Person",
     "name": "Jean Eric Hirwa",
-    "url": "https://hirwajeaneric.netlify.app/",
+    "url": "https://www.erichirwa.com/",
     "image": "/1718313379119.jpeg",
     "sameAs": [
       "https://github.com/hirwajeaneric",

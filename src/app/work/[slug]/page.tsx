@@ -40,7 +40,7 @@ export async function generateMetadata({
         width: 800, 
         height: 600 
       }],
-      url: `https://hirwajeaneric.netlify.app/work/${work.slug}`
+      url: `https://www.erichirwa.com/work/${work.slug}`
     }
   };
 }
@@ -70,13 +70,13 @@ export default async function WorkDetailPage({
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": work.name,
-    "url": `https://hirwajeaneric.netlify.app/work/${work.slug}`,
+    "url": `https://www.erichirwa.com/work/${work.slug}`,
     "description": work.description,
     "image": work.image,
     "creator": {
       "@type": "Person",
       "name": "Jean Eric Hirwa",
-      "url": "https://hirwajeaneric.netlify.app",
+      "url": "https://www.erichirwa.com",
       "image": "/1718313379119.jpeg",
       "sameAs": [
         "https://github.com/hirwajeaneric",

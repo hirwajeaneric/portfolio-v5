@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-// import ModeToggle from "./ModeToggle";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -13,7 +12,7 @@ export default function Navbar() {
     const pathname = usePathname();
     
     return (
-        <header className="flex flex-col z-50 fixed mx-auto w-[92%] justify-between items-center top-6 gap-2">
+        <header className="flex flex-col z-40 fixed mx-auto w-[92%] justify-between items-center top-6 gap-2">
             <div className="flex cursor-pointer items-center justify-between space-x-8 border w-full md:w-fit px-4 py-2 bg-zinc-200 dark:bg-zinc-800 border-zinc-400 dark:border-zinc-600">
                 <Link href={'/'} onClick={() => setOpen(false)} className="font-bold text-xl leading-tight text-nowrap">Jean Eric Hirwa</Link>
                 <div className="flex justify-between items-center gap-6">

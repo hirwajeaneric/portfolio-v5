@@ -11,7 +11,7 @@ export const metadata = {
   openGraph: {
     title: "About - Jean Eric Hirwa",
     description: "Learn more about me, my background, and my journey as a software developer and artist.",
-    url: "https://hirwajeaneric.netlify.app/about",
+    url: "https://www.erichirwa.com/about",
     siteName: "Jean Eric Hirwa - About",
     images: [
       {
@@ -29,7 +29,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Jean Eric Hirwa",
-  "url": "https://hirwajeaneric.netlify.app/",
+  "url": "https://www.erichirwa.com/",
   "image": "/1718313379119.jpeg",
   "sameAs": [
     "https://github.com/hirwajeaneric",

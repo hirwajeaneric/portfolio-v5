@@ -42,13 +42,13 @@ export default async function page({ params }: { params: { slug: string } }) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "name": article?.title || "Jean Eric Hirwa - Blog",
-    "url": `https://hirwajeaneric.netlify.app/blog/${slug}`,
+    "url": `https://www.erichirwa.com/blog/${slug}`,
     "description": article?.introduction || "Get the latest insights on some topics I find attractive.",
     "image": article?.coverimage || "/1718313379119.jpeg",
     "creator": {
       "@type": "Person",
       "name": "Jean Eric Hirwa",
-      "url": "https://hirwajeaneric.netlify.app/",
+      "url": "https://www.erichirwa.com/",
       "image": "/1718313379119.jpeg",
       "sameAs": [
         "https://github.com/hirwajeaneric",
