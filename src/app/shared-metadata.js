@@ -1,1 +1,0 @@
-export const openGraphImage = { images: ['/1718313379119.jpeg'] }

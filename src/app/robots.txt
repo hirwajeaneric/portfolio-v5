@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /dashboard/
-Sitemap: https://hirwajeaneric.netlify.app/sitemap.xml
