@@ -1,6 +1,6 @@
 
 export default function page() {
   return (
-    <div>List of Stories</div>
+    <div>page</div>
   )
 }

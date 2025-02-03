@@ -19,7 +19,7 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar" 
 
 const geistSans = localFont({
   src: "../../../styles/fonts/GeistVF.woff",

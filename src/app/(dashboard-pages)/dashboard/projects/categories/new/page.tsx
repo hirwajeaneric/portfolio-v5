@@ -1,6 +1,5 @@
-
 export default function page() {
   return (
-    <div>List of Stories</div>
+    <div>New Project Category</div>
   )
 }

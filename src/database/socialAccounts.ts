@@ -19,5 +19,9 @@ export const SocialAccounts: SocialAccount[] = [
     {
         name: "Medium",
         url: "https://medium.com/@hirwajeaneric",
+    },
+    {
+        name: "YouTube",
+        url: "https://www.youtube.com/@HirwaJeanEric-x9j"
     }
 ];
