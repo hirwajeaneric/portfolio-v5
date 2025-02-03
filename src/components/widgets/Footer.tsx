@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { BsMedium } from "react-icons/bs";
 import ScrolledSection from "./ScrolledSection";
+import { FaYoutube } from "react-icons/fa6";
 
 export default function Footer() {
     return (
@@ -40,7 +41,11 @@ export default function Footer() {
                             {SocialAccounts.map((account, index) => (
                                 <Link key={index} target="_blank" href={account.url} className="flex items-center justify-center gap-4">
                                     <span className="border border-zinc-800 dark:border-zinc-500 p-3 rounded-full bg-zinc-300 dark:bg-zinc-800">
-                                        {account.name === "Github" ? <GitHubLogoIcon className="w-6 h-6" /> : account.name === "LinkedIn" ? <LinkedInLogoIcon className="w-6 h-6" /> : account.name === "Instagram" ? <InstagramLogoIcon className="w-6 h-6" /> : <BsMedium className="w-6 h-6" />}
+                                        {account.name === "Github" && <GitHubLogoIcon className="w-6 h-6" />} 
+                                        {account.name === "LinkedIn" && <LinkedInLogoIcon className="w-6 h-6" />} 
+                                        {account.name === "Instagram" && <InstagramLogoIcon className="w-6 h-6" />} 
+                                        {account.name === "Medium" && <BsMedium className="w-6 h-6" />} 
+                                        {account.name === "YouTube" && <FaYoutube className="w-6 h-6" />}
                                     </span>
                                 </Link>
                             ))}

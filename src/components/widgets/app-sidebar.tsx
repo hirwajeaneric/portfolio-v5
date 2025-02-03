@@ -29,122 +29,108 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Jean Eric Hirwa",
+    email: "hirwajeric@gmail.com",
+    avatar: "/user-sample.png",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Personal Portfolio",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
       plan: "Free",
-    },
+    }
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Blog",
+      url: "/dashboard/blog",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "All Stories",
+          url: "/dashboard/blog",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Create Story",
+          url: "/dashboard/blog/new",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "All Categories",
+          url: "/dashboard/blog/categories",
+        },
+        {
+          title: "Add Categories",
+          url: "/dashboard/blog/categories/new",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Projects",
+      url: "/dashboard/projects",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "All Projects",
+          url: "/dashboard/projects",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "New Project",
+          url: "/dashboard/projects/new",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Project Categories",
+          url: "/dashboard/projects/categories",
+        },
+        {
+          title: "New Project Categories",
+          url: "/dashboard/projects/categories/new",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Services",
+      url: "/dashboard/services",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "All Services",
+          url: "/dashboard/services",
         },
         {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
+          title: "New Service",
+          url: "/dashboard/services/new",
+        }
       ],
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/dashbard/settings",
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Home Settings",
+          url: "/dashboard/settings/home",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "About Settings",
+          url: "/dashboard/settings/about",
         },
         {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+          title: "Contact Settings",
+          url: "/dashboard/settings/contact",
+        }
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: "Overview",
+      url: "/dashboard",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Statistics and Analytics",
       url: "#",
       icon: PieChart,
     },
