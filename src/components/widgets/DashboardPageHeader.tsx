@@ -11,7 +11,7 @@ function DashboardPageHeader({ title, button, description }: DashboardPageHeader
                 <h1 className="text-2xl font-bold">{title}</h1>
                 {button}
             </div>
-            <p className="text-zinc-400">{description}</p>
+            {description && <p className="text-zinc-400">{description}</p>}
         </header>
     )
 }

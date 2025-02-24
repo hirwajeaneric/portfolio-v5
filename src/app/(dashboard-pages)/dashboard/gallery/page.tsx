@@ -7,9 +7,9 @@ export default function page() {
   return (
     <DashboardPageContainer>
       <DashboardPageHeader 
-        title="New Blog Post" 
+        title="Gallery" 
         description=""
-        button={<Link href="/dashboard/blog/new"><Button>Go Back</Button></Link>}
+        button={<Link href="/dashboard/blog/new"><Button>Upload New Asset</Button></Link>}
       />
       
     </DashboardPageContainer>

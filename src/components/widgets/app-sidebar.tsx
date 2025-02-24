@@ -2,10 +2,8 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
   GalleryVerticalEnd,
   Map,
@@ -17,7 +15,6 @@ import {
 import { NavMain } from "@/components/widgets/nav-main"
 import { NavProjects } from "@/components/widgets/nav-projects"
 import { NavUser } from "@/components/widgets/nav-user"
-import { TeamSwitcher } from "@/components/widgets/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -104,6 +101,36 @@ const data = {
       ],
     },
     {
+      title: "Gallery",
+      url: "/dashboard/gallery",
+      icon: BookOpen,
+      items: [
+        {
+          title: "All Assets",
+          url: "/dashboard/gallery",
+        },
+      ],
+    },
+    {
+      title: "Feedback",
+      url: "/dashboard/reviews",
+      icon: BookOpen,
+      items: [
+        {
+          title: "Reviews",
+          url: "/dashboard/reviews",
+        },
+        {
+          title: "Messages",
+          url: "/dashboard/messages",
+        },
+        {
+          title: "Subscribers",
+          url: "/dashboard/messages",
+        }
+      ],
+    },
+    {
       title: "Settings",
       url: "/dashbard/settings",
       icon: Settings2,
@@ -146,7 +173,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
