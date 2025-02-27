@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ProgressBarProvider from "./ProgressBarProvider";
 import { GalleryVerticalEnd } from "lucide-react"
+import Providers from "@/app/providers";
 
 const geistSans = localFont({
   src: "../../../styles/fonts/GeistVF.woff",
@@ -50,10 +51,9 @@ export default function RootLayout({
                   </div>
                   Acme Inc.
                 </a>
-                {children}
+                <Providers>{children}</Providers>
               </div>
             </div>
-
           </ThemeProvider>
         </ProgressBarProvider>
         <SpeedInsights />

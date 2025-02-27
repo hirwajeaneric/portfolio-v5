@@ -1,3 +1,4 @@
+import ContactForm from "@/components/widgets/forms/ContactForm";
 import SocialAccountsGroup from "@/components/widgets/SocialAccountsGroup";
 
 export const metadata = {
@@ -66,12 +67,7 @@ export default function page() {
             <div className="flex flex-col mt-16 md:mt-32 gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
               <h2 className="text-zinc-400 uppercase">CONTACT</h2>
               <h3 className="text-zinc-300 text-4xl leading-normal md:font-light">Let&apos;s get in touch</h3>
-              <form action="">
-                <input type="text" name="name" id="name" placeholder="Name" className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm" />
-                <input type="email" name="email" id="email" placeholder="Email" className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm mt-4" />
-                <textarea name="message" id="message" placeholder="Message" rows={4} className="w-full p-2 md:p-4 bg-zinc-100 dark:bg-zinc-700 rounded-sm mt-4" />
-                <button type="submit" className="w-full p-2 md:p-4 bg-zinc-300 rounded-sm mt-4 text-black text-base md:text-xl font-semibold">Send Message</button>
-              </form>
+              <ContactForm />
             </div>
             <SocialAccountsGroup />
           </div>

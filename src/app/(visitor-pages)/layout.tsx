@@ -6,6 +6,7 @@ import Navbar from "@/components/widgets/Navbar";
 import Footer from "@/components/widgets/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ProgressBarProvider from "./ProgressBarProvider";
+import Providers from "../providers";
 
 const geistSans = localFont({
   src: "../../styles/fonts/GeistVF.woff",
@@ -45,7 +46,7 @@ export default function RootLayout({
           >
             <Navbar />
             <main className="flex w-full flex-1 flex-col justify-start items-start z-10">
-              {children}
+              <Providers>{children}</Providers>
             </main>
             <Footer />
           </ThemeProvider>
