@@ -3,114 +3,133 @@
 import { submitContactUs } from "@/actions/notifications";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send } from "lucide-react";
-import { useFormState } from "react-dom";
-
-const initialState = {
-  response: null,
-  type: null,
-  fullName: undefined,
-  email: undefined,
-  message: undefined,
-};
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ContactSchema, type ContactFormData } from "@/types";
 
 export default function ContactForm() {
-  const [state, formAction, pending] = useFormState(
-    submitContactUs,
-    initialState
-  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string | null;
+  }>({ type: null, message: null });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(ContactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: null });
+
+    try {
+      const formData = new FormData();
+      formData.append("fullName", data.fullName);
+      formData.append("email", data.email);
+      formData.append("message", data.message);
+
+      const result = await submitContactUs({} as any, formData);
+      
+      if (result.type === "success") {
+        setSubmitStatus({ type: "success", message: result.response });
+        reset(); // Clear form on success
+      } else {
+        setSubmitStatus({ type: "error", message: result.response });
+      }
+    } catch (error) {
+      setSubmitStatus({ 
+        type: "error", 
+        message: "An unexpected error occurred. Please try again." 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Response Message */}
-      {state?.response && (
+      {submitStatus.message && (
         <div
           className={cn(
             "w-full rounded-md border-2 px-4 py-3 text-sm font-medium transition-all",
-            state.type === "error"
+            submitStatus.type === "error"
               ? "border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200"
               : "border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
           )}
         >
-          {state.response}
+          {submitStatus.message}
         </div>
       )}
 
       {/* Full Name Field */}
       <div className="space-y-2">
-        <label 
-          htmlFor="fullName" 
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Full Name
-        </label>
+        <Label htmlFor="fullName">Full Name</Label>
         <Input
-          type="text"
-          name="fullName"
           id="fullName"
           placeholder="Enter your full name"
           className={cn(
             "h-11 rounded-none border-2 border-zinc-300 dark:border-zinc-600",
-            state?.fullName && "border-red-500 focus-visible:ring-red-500"
+            errors.fullName && "border-red-500 focus-visible:ring-red-500"
           )}
-          disabled={pending}
+          disabled={isSubmitting}
+          {...register("fullName")}
         />
-        {state?.fullName && (
+        {errors.fullName && (
           <p className="text-sm text-red-600 dark:text-red-400">
-            {state.fullName[0]}
+            {errors.fullName.message}
           </p>
         )}
       </div>
 
       {/* Email Field */}
       <div className="space-y-2">
-        <label 
-          htmlFor="email" 
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Email Address
-        </label>
+        <Label htmlFor="email">Email Address</Label>
         <Input
-          type="email"
-          name="email"
           id="email"
+          type="email"
           placeholder="Enter your email address"
           className={cn(
             "h-11 rounded-none border-2 border-zinc-300 dark:border-zinc-600",
-            state?.email && "border-red-500 focus-visible:ring-red-500"
+            errors.email && "border-red-500 focus-visible:ring-red-500"
           )}
-          disabled={pending}
+          disabled={isSubmitting}
+          {...register("email")}
         />
-        {state?.email && (
+        {errors.email && (
           <p className="text-sm text-red-600 dark:text-red-400">
-            {state.email[0]}
+            {errors.email.message}
           </p>
         )}
       </div>
 
       {/* Message Field */}
       <div className="space-y-2">
-        <label 
-          htmlFor="message" 
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Message
-        </label>
-        <textarea
-          name="message"
+        <Label htmlFor="message">Message</Label>
+        <Textarea
           id="message"
           placeholder="Tell me about your project or inquiry..."
           rows={4}
           className={cn(
-            "flex w-full rounded-none border-2 border-zinc-300 dark:border-zinc-600 bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm resize-none",
-            state?.message && "border-red-500 focus-visible:ring-red-500"
+            "rounded-none border-2 border-zinc-300 dark:border-zinc-600 resize-none",
+            errors.message && "border-red-500 focus-visible:ring-red-500"
           )}
-          disabled={pending}
+          disabled={isSubmitting}
+          {...register("message")}
         />
-        {state?.message && (
+        {errors.message && (
           <p className="text-sm text-red-600 dark:text-red-400">
-            {state.message[0]}
+            {errors.message.message}
           </p>
         )}
       </div>
@@ -118,11 +137,11 @@ export default function ContactForm() {
       {/* Submit Button */}
       <Button
         type="submit"
-        disabled={pending}
+        disabled={isSubmitting}
         className="w-full h-11 text-base font-medium rounded-none"
         size="lg"
       >
-        {pending ? (
+        {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending Message...

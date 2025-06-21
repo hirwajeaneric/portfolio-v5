@@ -6,6 +6,8 @@ export const ContactSchema = z.object({
     message: z.string().min(4, { message: "Message must be at least 4 characters long" }).max(500, { message: "Message cannot exceed 500 characters" }),
 });
 
+export type ContactFormData = z.infer<typeof ContactSchema>;
+
 export interface InitialContactFormState {
     response: string | null;
     type: "success" | "error" | null;
