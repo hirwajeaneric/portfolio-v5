@@ -1,150 +1,100 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import { cn } from "@/lib/utils";
-
-interface GridPatternProps {
-  width?: number;
-  height?: number;
-  x?: number;
-  y?: number;
-  strokeDasharray?: any;
-  numSquares?: number;
-  className?: string;
-  maxOpacity?: number;
-  duration?: number;
-  repeatDelay?: number;
+interface Square {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
 }
 
-export function GridPattern({
-  width = 40,
-  height = 40,
-  x = -1,
-  y = -1,
-  strokeDasharray = 0,
-  numSquares = 50,
-  className,
-  maxOpacity = 0.5,
-  duration = 4,
-  repeatDelay = 0.5,
-  ...props
-}: GridPatternProps) {
-  const id = useId();
-  const containerRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [squares, setSquares] = useState(() => generateSquares(numSquares));
+interface AnimatedGridPatternProps {
+  className?: string;
+  squares?: number;
+  duration?: number;
+}
 
-  function getPos() {
-    return [
-      Math.floor((Math.random() * dimensions.width) / width),
-      Math.floor((Math.random() * dimensions.height) / height),
-    ];
-  }
+export default function AnimatedGridPattern({
+  className = "",
+  squares = 20,
+  duration = 3000,
+}: AnimatedGridPatternProps) {
+  const [squaresList, setSquaresList] = useState<Square[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Adjust the generateSquares function to return objects with an id, x, and y
-  function generateSquares(count: number) {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      pos: getPos(),
-    }));
-  }
-
-  // Function to update a single square's position
-  const updateSquarePosition = (id: number) => {
-    setSquares((currentSquares) =>
-      currentSquares.map((sq) =>
-        sq.id === id
-          ? {
-              ...sq,
-              pos: getPos(),
-            }
-          : sq,
-      ),
-    );
-  };
-
-  // Update squares to animate in
-  useEffect(() => {
-    if (dimensions.width && dimensions.height) {
-      setSquares(generateSquares(numSquares));
+  const generateSquares = useCallback(() => {
+    const newSquares: Square[] = [];
+    for (let i = 0; i < squares; i++) {
+      newSquares.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 20 + 10,
+        opacity: Math.random() * 0.5 + 0.1,
+      });
     }
-  }, [dimensions, numSquares]);
+    return newSquares;
+  }, [squares]);
 
-  // Resize observer to update container dimensions
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        setDimensions({
-          width: entry.contentRect.width,
-          height: entry.contentRect.height,
+    setSquaresList(generateSquares());
+  }, [generateSquares]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          } else {
+            entry.target.classList.remove("animate");
+          }
         });
-      }
-    });
+      },
+      { threshold: 0.1 }
+    );
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
+    observer.observe(container);
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
-      }
+      observer.disconnect();
     };
-  }, [containerRef]);
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const interval = setInterval(() => {
+      setSquaresList(generateSquares());
+    }, duration);
+
+    return () => clearInterval(interval);
+  }, [duration, generateSquares]);
 
   return (
-    <svg
+    <div
       ref={containerRef}
-      aria-hidden="true"
-      className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
-        className,
-      )}
-      {...props}
+      className={`relative w-full h-full overflow-hidden ${className}`}
     >
-      <defs>
-        <pattern
-          id={id}
-          width={width}
-          height={height}
-          patternUnits="userSpaceOnUse"
-          x={x}
-          y={y}
-        >
-          <path
-            d={`M.5 ${height}V.5H${width}`}
-            fill="none"
-            strokeDasharray={strokeDasharray}
-          />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-      <svg x={x} y={y} className="overflow-visible">
-        {squares.map(({ pos: [x, y], id }, index) => (
-          <motion.rect
-            initial={{ opacity: 0 }}
-            animate={{ opacity: maxOpacity }}
-            transition={{
-              duration,
-              repeat: 1,
-              delay: index * 0.1,
-              repeatType: "reverse",
-            }}
-            onAnimationComplete={() => updateSquarePosition(id)}
-            key={`${x}-${y}-${index}`}
-            width={width - 1}
-            height={height - 1}
-            x={x * width + 1}
-            y={y * height + 1}
-            fill="currentColor"
-            strokeWidth="0"
-          />
-        ))}
-      </svg>
-    </svg>
+      {squaresList.map((square) => (
+        <div
+          key={square.id}
+          className="absolute bg-current opacity-20 transition-all duration-1000 ease-in-out"
+          style={{
+            left: `${square.x}%`,
+            top: `${square.y}%`,
+            width: `${square.size}px`,
+            height: `${square.size}px`,
+            opacity: square.opacity,
+          }}
+        />
+      ))}
+    </div>
   );
 }
-
-export default GridPattern;

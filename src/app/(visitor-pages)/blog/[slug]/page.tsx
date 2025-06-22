@@ -84,11 +84,11 @@ export default async function page({ params }: { params: { slug: string } }) {
         </section>
         <article id="content" className="max-w-screen-md flex flex-col mx-auto justify-center items-start pt-20 md:pt-24 mb-6 w-full px-4">
           <h3 className="text-2xl md:text-4xl font-light text-left mb-6 text-zinc-800 dark:text-zinc-200">
-            Your website's navigation should be simple and straightforward
+            Your website&apos;s navigation should be simple and straightforward
           </h3>
           <p className="text-sm md:text-base">
             Creating a successful website requires more than just a pretty design. While aesthetics are important, a website that engages and retains users must also provide intuitive navigation, compelling visuals, and easy-to-digest content. Here are 10 essential website elements that you should include to keep your visitors engaged.
-            Firstly, your website's navigation should be simple and straightforward. Visitors should be able to find what they are looking for easily, without having to navigate through multiple pages. Clear navigation menus, search bars, and well-organized pages are crucial to keeping users engaged and ensuring they return to your site.
+            Firstly, your website&apos;s navigation should be simple and straightforward. Visitors should be able to find what they are looking for easily, without having to navigate through multiple pages. Clear navigation menus, search bars, and well-organized pages are crucial to keeping users engaged and ensuring they return to your site.
           </p>
           <h4 className="text-2xl md:text-3xl font-light text-left mt-8 mb-6 text-zinc-800 dark:text-zinc-200">
             A clear and compelling value proposition
@@ -106,7 +106,7 @@ export default async function page({ params }: { params: { slug: string } }) {
             Engaging visuals and multimedia content
           </h4>
           <p className="text-sm md:text-base mb-4">
-            Fourthly, include engaging visuals and multimedia content on your website. Whether it's high-quality images, videos, or infographics, visual content is an effective way to engage and retain users. But don't just include visuals for the sake of it - make sure that each piece of multimedia content serves a purpose and helps to tell your brand's story.
+            Fourthly, include engaging visuals and multimedia content on your website. Whether it&apos;s high-quality images, videos, or infographics, visual content is an effective way to engage and retain users. But don&apos;t just include visuals for the sake of it - make sure that each piece of multimedia content serves a purpose and helps to tell your brand&apos;s story.
           </p>
 
           <div className="flex flex-col items-start justify-between gap-4 bg-zinc-800 border border-zinc-700 p-10 mt-8">

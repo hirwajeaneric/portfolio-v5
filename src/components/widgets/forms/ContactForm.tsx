@@ -38,7 +38,7 @@ export default function ContactForm() {
       formData.append("email", data.email);
       formData.append("message", data.message);
 
-      const result = await submitContactUs({} as any, formData);
+      const result = await submitContactUs({} as never, formData);
       
       if (result.type === "success") {
         setSubmitStatus({ type: "success", message: result.response });
@@ -46,7 +46,7 @@ export default function ContactForm() {
       } else {
         setSubmitStatus({ type: "error", message: result.response });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({ 
         type: "error", 
         message: "An unexpected error occurred. Please try again." 

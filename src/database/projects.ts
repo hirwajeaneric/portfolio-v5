@@ -1,5 +1,5 @@
-import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaMobileAlt, FaCss3Alt, FaHtml5 } from 'react-icons/fa';
-import { SiTypescript, SiMongodb, SiPostgresql, SiRedux } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaCss3Alt, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { SiTypescript, SiMongodb } from 'react-icons/si';
 
 type Technologies = {
     name: string,
@@ -169,9 +169,9 @@ const projects: ProjectTypes[] = [
     //     challenge: "The challenge was to create a user-friendly and scalable web application with a clean and intuitive interface.",
     //     goal: "To create a full-featured blog platform where users can create, edit, and share blog posts.",
     //     result: "I created a full-featured blog platform using HTML5, CSS3, and Node.js, which allowed users to create, edit, and share blog posts, implement user authentication, and handle real-time updates.",
-    //     client: "Aime Yves Ngirimana",
+    //     client: "Myself",
     //     timeline: "6 months"
-    // }
+    // },
 ];
 
 export default projects;

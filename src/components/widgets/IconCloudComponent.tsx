@@ -1,4 +1,4 @@
-import IconCloud from "@/components/ui/icon-cloud";
+import { IconCloud } from "@/components/ui/icon-cloud";
 
 const slugs = [
   "typescript",
@@ -32,11 +32,15 @@ const slugs = [
   "sonarqube",
   "figma",
 ];
-
+ 
 export function IconCloudComponent() {
+  const images = slugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+  );
+ 
   return (
-    <div className="">
-      <IconCloud iconSlugs={slugs} />
+    <div className="relative flex size-full items-center justify-center overflow-hidden">
+      <IconCloud images={images} />
     </div>
   );
 }
