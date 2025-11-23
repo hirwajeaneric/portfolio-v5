@@ -1,7 +1,6 @@
 import SocialAccountsGroup from "@/components/widgets/SocialAccountsGroup";
 import { AwardsAndCertificates } from "@/database/awards";
 import { ArrowDownIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
