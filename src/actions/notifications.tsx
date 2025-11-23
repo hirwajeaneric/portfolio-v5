@@ -50,7 +50,7 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
 
             // Log success without sensitive information
             console.log('Contact form submission processed successfully');
-        } catch (emailError) {
+        } catch {
             // Log error without exposing sensitive details
             console.error('Email sending failed');
             throw new Error("Failed to send emails. Please try again later.");
