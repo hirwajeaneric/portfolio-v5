@@ -50,7 +50,6 @@ export default function page() {
   const jssStyles = {
     backgroundImage: `linear-gradient(to bottom, rgba(39, 39, 42, 0), rgba(9, 9, 11, 1)), url("/Jean Eric - Image 1 - 684x1000.png")`,
     backgroundSize: 'contain',
-    backgroundPosition: 'left',
     backgroundRepeat: 'no-repeat',
     transition: 'background-image 0.3s ease-in-out',
     willChange: 'background-image',
@@ -62,9 +61,12 @@ export default function page() {
 
       <section className="flex flex-col w-full flex-wrap justify-center bg-zinc-950 items-center">
         <div className="flex w-full justify-between flex-wrap items-start max-w-screen-xl px-4">
-          <div style={jssStyles} className="flex h-screen justify-center w-full md:w-2/5 md:justify-between items-center flex-wrap">
+          <div 
+            style={jssStyles} 
+            className="flex h-[60vh] md:h-screen justify-center w-full md:w-2/5 md:justify-between items-center flex-wrap flex-shrink-0 md:sticky md:top-0 relative md:z-0 bg-center md:bg-left"
+          >
           </div>
-          <div className="flex flex-col justify-start items-center md:items-start w-full md:w-3/5 pt-0 md:pt-48 pb-12 md:pb-20">
+          <div className="flex flex-col justify-start items-center md:items-start w-full md:w-3/5 pt-0 md:pt-48 pb-12 md:pb-20 relative z-10">
             <h1 className="text-5xl w-full md:text-9xl flex flex-col font-extralight items-center md:items-start text-zinc-800 dark:text-zinc-300">
               <span className="">Jean Eric</span>
               <em className="pt-serif-regular-italic">Hirwa</em>
@@ -87,7 +89,7 @@ export default function page() {
                 <br />
                 Jean Eric Hirwa is a passionate, dedicated, and creative web developer with a proven track record of delivering exceptional results. He is known for his ability to design visually stunning websites, develop robust applications, and deliver high-quality content. He is also known for his ability to work well with teams and collaborate effectively to create a successful and engaging online presence.
               </p>
-              <Image src="/1718313379119.jpeg" alt="Picture of Jean Eric Hirwa" className="bg-black border border-zinc-600" width={684} height={1000} />
+              {/* <Image src="/1718313379119.jpeg" alt="Picture of Jean Eric Hirwa" className="bg-black border border-zinc-600" width={684} height={1000} /> */}
             </div>
             <SocialAccountsGroup />
             <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">

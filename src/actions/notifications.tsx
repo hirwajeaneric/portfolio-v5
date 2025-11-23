@@ -3,6 +3,8 @@
 import { getErrorMessage } from "@/lib/errorHandler";
 import { ContactSchema, InitialContactFormState } from "@/types"
 import { prisma } from "@/lib/db";
+import { sendEmail } from "@/lib/nodemailer";
+import { generateContactEmailHTML } from "@/lib/email-template";
 
 /**
  * Server Action for handling contact form submissions
@@ -37,21 +39,18 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
             throw new Error("Failed to save your message");
         }
 
-        // Send email notification
+        // Send email notification using nodemailer
         try {
-            // Use absolute URL for server-side fetch
-            const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
-            const emailResponse = await fetch(`${baseUrl}/api/send`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ fullName, email, message }),
+            const recipientEmail = process.env.EMAIL || 'hirwajeric@gmail.com';
+            
+            await sendEmail({
+                to: recipientEmail,
+                subject: `New Contact Form Submission from ${fullName}`,
+                html: generateContactEmailHTML({ fullName, email, message }),
+                replyTo: email,
             });
 
-            if (!emailResponse.ok) {
-                console.warn('Email notification failed, but message was saved');
-            }
+            console.log('Email notification sent successfully');
         } catch (emailError) {
             console.warn('Email notification failed:', emailError);
             // Don't fail the entire submission if email fails
