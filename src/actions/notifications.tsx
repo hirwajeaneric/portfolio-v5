@@ -1,5 +1,6 @@
 "use server";
 
+import 'server-only';
 import { getErrorMessage } from "@/lib/errorHandler";
 import { ContactSchema, InitialContactFormState } from "@/types"
 import { sendEmail } from "@/lib/nodemailer";
@@ -26,8 +27,11 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
         const { fullName, email, message } = result.data;
 
         // Send emails using nodemailer
+        // Access environment variables at runtime inside the function to prevent webpack inlining
         try {
-            const ownerEmail = process.env.EMAIL;
+            // Dynamically access environment variable at runtime using bracket notation
+            // This prevents webpack from statically analyzing and inlining the value
+            const ownerEmail = process.env['EMAIL'];
             
             if (!ownerEmail) {
                 throw new Error('Email configuration is missing');
