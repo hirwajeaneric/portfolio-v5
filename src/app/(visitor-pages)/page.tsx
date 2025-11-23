@@ -1,5 +1,4 @@
 import BlurFade from "@/components/ui/blur-fade";
-import { IconCloudComponent } from "@/components/widgets/IconCloudComponent";
 import ProjectDisplayCard from "@/components/widgets/ProjectDisplayCard";
 import TestimonialCard from "@/components/widgets/TestimonialCard";
 import WorkProcess from "@/components/widgets/WorkProcess";
@@ -12,6 +11,17 @@ import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import Link from "next/link";
 import { BsMedium } from "react-icons/bs";
 import { FaYoutube } from "react-icons/fa6";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { 
+    FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaAws, FaDocker, FaGitAlt, FaGithub
+} from "react-icons/fa";
+import { 
+    SiTypescript, SiJavascript, SiNextdotjs, SiExpress, SiPrisma, SiPostgresql,
+    SiFirebase, SiVercel, SiJest, SiJira, SiFigma, SiKubernetes, SiTerraform,
+    SiAnsible, SiJenkins, SiLinux, SiShell, SiPrometheus, SiGrafana,
+    SiAdobephotoshop, SiAdobeillustrator, SiAdobexd, SiAdobeindesign, SiSketch, SiCanva,
+    SiGithubactions, SiGitlab
+} from "react-icons/si";
 
 const jsonLd = {
     "@context": "https://schema.org",
@@ -32,6 +42,115 @@ const jsonLd = {
             "https://www.instagram.com/hirwa_jean_eric/"
         ]
     }
+}
+
+// Technology icons mapping
+const technologyIcons: Record<string, { icon: React.ComponentType<{ className?: string }>, category: string }> = {
+    // Frontend & Languages
+    "React": { icon: FaReact, category: "Frontend" },
+    "TypeScript": { icon: SiTypescript, category: "Language" },
+    "JavaScript": { icon: SiJavascript, category: "Language" },
+    "HTML": { icon: FaHtml5, category: "Frontend" },
+    "CSS": { icon: FaCss3Alt, category: "Frontend" },
+    "Next.js": { icon: SiNextdotjs, category: "Framework" },
+    
+    // Backend
+    "Node.js": { icon: FaNodeJs, category: "Backend" },
+    "Express.js": { icon: SiExpress, category: "Backend" },
+    "Prisma": { icon: SiPrisma, category: "Database" },
+    "PostgreSQL": { icon: SiPostgresql, category: "Database" },
+    
+    // Cloud & DevOps
+    "Firebase": { icon: SiFirebase, category: "Cloud" },
+    "AWS": { icon: FaAws, category: "Cloud" },
+    "Vercel": { icon: SiVercel, category: "Cloud" },
+    "Docker": { icon: FaDocker, category: "DevOps" },
+    "Kubernetes": { icon: SiKubernetes, category: "DevOps" },
+    "Terraform": { icon: SiTerraform, category: "DevOps" },
+    "Ansible": { icon: SiAnsible, category: "DevOps" },
+    "Jenkins": { icon: SiJenkins, category: "DevOps" },
+    "Linux": { icon: SiLinux, category: "DevOps" },
+    "Bash": { icon: SiShell, category: "DevOps" },
+    "GitHub Actions": { icon: SiGithubactions, category: "DevOps" },
+    "CI/CD": { icon: SiGitlab, category: "DevOps" },
+    "Prometheus": { icon: SiPrometheus, category: "DevOps" },
+    "Grafana": { icon: SiGrafana, category: "DevOps" },
+    
+    // Tools
+    "Jest": { icon: SiJest, category: "Testing" },
+    "Git": { icon: FaGitAlt, category: "Tools" },
+    "GitHub": { icon: FaGithub, category: "Tools" },
+    "Jira": { icon: SiJira, category: "Tools" },
+    "Figma": { icon: SiFigma, category: "Design" },
+    
+    // Design Tools
+    "Adobe Photoshop": { icon: SiAdobephotoshop, category: "Design" },
+    "Adobe Illustrator": { icon: SiAdobeillustrator, category: "Design" },
+    "Adobe XD": { icon: SiAdobexd, category: "Design" },
+    "InDesign": { icon: SiAdobeindesign, category: "Design" },
+    "Sketch": { icon: SiSketch, category: "Design" },
+    "Canva": { icon: SiCanva, category: "Design" },
+};
+
+// Get all unique technologies from services
+const getAllTechnologies = (): string[] => {
+    const allTechs = MyServices.flatMap(service => service.technologies);
+    return Array.from(new Set(allTechs));
+};
+
+function TechnologyIconsGrid() {
+    const technologies = getAllTechnologies();
+    const categories = Array.from(new Set(technologies.map(tech => technologyIcons[tech]?.category).filter(Boolean))).sort();
+    
+    return (
+        <BlurFade delay={0.1} inView>
+            <Tabs defaultValue={categories[0]} className="w-full">
+                <TabsList className="w-full justify-start h-auto p-1 bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg flex-wrap gap-1">
+                    {categories.map((category) => (
+                        <TabsTrigger 
+                            key={category} 
+                            value={category}
+                            className="text-xs sm:text-sm px-3 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100"
+                        >
+                            {category}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+                {categories.map((category) => {
+                    const categoryTechs = technologies.filter(tech => technologyIcons[tech]?.category === category);
+                    
+                    return (
+                        <TabsContent key={category} value={category} className="mt-4">
+                            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                                {categoryTechs.map((tech, index) => {
+                                    const IconComponent = technologyIcons[tech]?.icon;
+                                    if (!IconComponent) return null;
+                                    
+                                    return (
+                                        <BlurFade 
+                                            key={tech} 
+                                            delay={0.02 * index} 
+                                            inView
+                                            className="group"
+                                        >
+                                            <div className="relative flex flex-col items-center justify-center p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-300 cursor-default">
+                                                <IconComponent 
+                                                    className="w-6 h-6 sm:w-7 sm:h-7 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-300" 
+                                                />
+                                                <span className="mt-1.5 text-[10px] sm:text-xs text-center text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors duration-300 line-clamp-2 leading-tight">
+                                                    {tech}
+                                                </span>
+                                            </div>
+                                        </BlurFade>
+                                    );
+                                })}
+                            </div>
+                        </TabsContent>
+                    );
+                })}
+            </Tabs>
+        </BlurFade>
+    );
 }
 
 export default function page() {
@@ -78,11 +197,17 @@ export default function page() {
                         </Link>
                     </BlurFade>
                 </section>
-                <section id="skills" className="max-w-screen-xl flex flex-col mx-auto justify-between items-start w-full px-4">
-                    <div className="w-full mt-16">
-                        <IconCloudComponent />
-                    </div>
-                    <div className="flex flex-col gap-8 w-full relative -top-60 -mb-64">
+                <section id="skills" className="max-w-screen-xl flex flex-col mx-auto justify-between items-start w-full px-4 pt-24">
+                    <BlurFade delay={0.1} inView>
+                        <div className="flex flex-col gap-6 w-full mb-12">
+                            <div className="flex flex-col gap-2">
+                                <h3 className="text-2xl md:text-3xl text-zinc-800 dark:text-zinc-300">Technologies I Work With</h3>
+                                <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base">A curated selection of tools and technologies I use to build modern, scalable solutions</p>
+                            </div>
+                            <TechnologyIconsGrid />
+                        </div>
+                    </BlurFade>
+                    <div className="flex flex-col gap-8 w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
                             {MyServices.map((service, index) => (
                                 <div key={index} className="border border-zinc-800 flex flex-col justify-between dark:border-zinc-600 p-8 md:p-12 bg-zinc-200 dark:bg-zinc-800">
