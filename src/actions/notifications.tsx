@@ -2,13 +2,12 @@
 
 import { getErrorMessage } from "@/lib/errorHandler";
 import { ContactSchema, InitialContactFormState } from "@/types"
-import { prisma } from "@/lib/db";
 import { sendEmail } from "@/lib/nodemailer";
-import { generateContactEmailHTML } from "@/lib/email-template";
+import { generateNotificationEmailHTML, generateConfirmationEmailHTML } from "@/lib/email-template";
 
 /**
  * Server Action for handling contact form submissions
- * This action runs on the server side and can safely use PrismaClient
+ * Sends confirmation email to submitter and notification email to site owner
  */
 export const submitContactUs = async (_prevState: InitialContactFormState, formData: FormData): Promise<InitialContactFormState> => {
     try {
@@ -26,39 +25,34 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
 
         const { fullName, email, message } = result.data;
 
-        // Save message to database
-        const savedMessage = await prisma.message.create({
-            data: {
-                fullName,
-                email,
-                message,
-            },
-        });
-
-        if (!savedMessage) {
-            throw new Error("Failed to save your message");
-        }
-
-        // Send email notification using nodemailer
+        // Send emails using nodemailer
         try {
-            const recipientEmail = process.env.EMAIL || 'hirwajeric@gmail.com';
+            const ownerEmail = process.env.EMAIL || 'hirwajeric@gmail.com';
             
+            // Send notification email to site owner
             await sendEmail({
-                to: recipientEmail,
+                to: ownerEmail,
                 subject: `New Contact Form Submission from ${fullName}`,
-                html: generateContactEmailHTML({ fullName, email, message }),
+                html: generateNotificationEmailHTML({ fullName, email, message }),
                 replyTo: email,
             });
 
-            console.log('Email notification sent successfully');
+            // Send confirmation email to the submitter
+            await sendEmail({
+                to: email,
+                subject: 'Thank You for Contacting Me - Jean Eric Hirwa',
+                html: generateConfirmationEmailHTML({ fullName }),
+            });
+
+            console.log('Emails sent successfully');
         } catch (emailError) {
-            console.warn('Email notification failed:', emailError);
-            // Don't fail the entire submission if email fails
+            console.error('Email sending failed:', emailError);
+            throw new Error("Failed to send emails. Please try again later.");
         }
 
         return {
             type: "success",
-            response: "Your message has been sent successfully! We'll get back to you as soon as possible.",
+            response: "Your message has been sent successfully! I'll get back to you as soon as possible.",
         };
     } catch (error: unknown) {
         console.error('Contact form submission error:', error);
