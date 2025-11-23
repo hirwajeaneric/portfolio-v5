@@ -11,8 +11,9 @@ export const MyServices: Services[] = [
         description: "I develop responsive, dynamic, and scalable websites and web applications that meet user needs, using modern web technologies. From front-end interfaces to back-end logic, I focus on delivering optimal performance and a seamless user experience.",
         slug: "software-development",
         technologies: [
-            "React", "TypeScript", "JavaScript", "HTML", "CSS", "Node.js", "Express.js", 
-            "Next.js", "Prisma", "PostgreSQL", "Firebase", "AWS", "Vercel", "Jest", 
+            "React", "TypeScript", "JavaScript", "Java", "HTML", "CSS", 
+            "NestJS", "Next.js", "Angular", "Spring Boot", "Prisma", "Node.js", "Express.js", "PostgreSQL", "MySQL", "MongoDB", 
+            "Firebase", "AWS", "Vercel", "Cloudflare", "Netlify", "Render", "Jest", 
             "Docker", "Git", "Jira", "GitHub", "Figma"
         ]
     },
