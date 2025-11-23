@@ -27,7 +27,11 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
 
         // Send emails using nodemailer
         try {
-            const ownerEmail = process.env.EMAIL || 'hirwajeric@gmail.com';
+            const ownerEmail = process.env.EMAIL;
+            
+            if (!ownerEmail) {
+                throw new Error('Email configuration is missing');
+            }
             
             // Send notification email to site owner
             await sendEmail({
@@ -44,9 +48,11 @@ export const submitContactUs = async (_prevState: InitialContactFormState, formD
                 html: generateConfirmationEmailHTML({ fullName }),
             });
 
-            console.log('Emails sent successfully');
+            // Log success without sensitive information
+            console.log('Contact form submission processed successfully');
         } catch (emailError) {
-            console.error('Email sending failed:', emailError);
+            // Log error without exposing sensitive details
+            console.error('Email sending failed');
             throw new Error("Failed to send emails. Please try again later.");
         }
 

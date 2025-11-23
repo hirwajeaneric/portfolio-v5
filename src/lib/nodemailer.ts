@@ -11,7 +11,8 @@ export const createTransporter = () => {
   const appPassword = process.env.APP_PASSWORD;
 
   if (!email || !appPassword) {
-    throw new Error('EMAIL and APP_PASSWORD environment variables are required');
+    // Don't expose environment variable names in error messages
+    throw new Error('Email configuration is missing');
   }
 
   return nodemailer.createTransport({
@@ -40,7 +41,8 @@ export const sendEmail = async ({
   const email = process.env.EMAIL;
 
   if (!email) {
-    throw new Error('EMAIL environment variable is required');
+    // Don't expose environment variable names in error messages
+    throw new Error('Email configuration is missing');
   }
 
   const transporter = createTransporter();
