@@ -1,10 +1,12 @@
 import { getGallery, getWork, getAllWorks } from "@/actions/works";
-import { LayoutGrid } from "@/components/ui/layout-grid";
+import { ImageGallery } from "@/components/ui/image-gallery";
 import { cn } from "@/lib/utils";
 import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import BlurFade from "@/components/ui/blur-fade";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 // Generate static params for all works
 export async function generateStaticParams() {
@@ -169,32 +171,109 @@ export default async function WorkDetailPage({
           />
         </section>
 
-        <section className="max-w-screen-xl grid grid-cols-1 gap-20 md:grid-cols-2 w-full px-4 pt-16 md:pt-32 pb-8 md:pb-16">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xl text-zinc-400">Deliverables</h3>
-            <p className="text-4xl text-zinc-300 font-light">
-              {work.deliverable || 'No specific deliverables'}
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-4">
-            <MoreProjectDetailsCard title="Challenge" value={work.challenge || 'N/A'} />
-            <MoreProjectDetailsCard title="Goal" value={work.goal || 'N/A'} />
-            <MoreProjectDetailsCard title="Result" value={work.result || 'N/A'} />
+        <section className="max-w-screen-xl w-full px-4 pt-16 md:pt-32 pb-8 md:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Deliverables Section */}
+            <BlurFade delay={0.1} inView>
+              <div className="flex flex-col gap-6 group">
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-zinc-400 dark:bg-zinc-600 group-hover:w-16 transition-all duration-300"></div>
+                  <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">
+                    Deliverables
+                  </h3>
+                </div>
+                <div className="border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 p-8 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all duration-300">
+                  <p className="text-3xl md:text-4xl text-zinc-800 dark:text-zinc-200 font-light leading-tight">
+                    {work.deliverable || 'No specific deliverables'}
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+            
+            {/* Challenge, Goal, Result - Interactive Tabs */}
+            <BlurFade delay={0.2} inView>
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-zinc-400 dark:bg-zinc-600"></div>
+                  <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">
+                    Project Details
+                  </h3>
+                </div>
+                <Tabs defaultValue="challenge" className="w-full">
+                  <TabsList className="w-full justify-start h-auto p-1 bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg flex-wrap gap-1 mb-4">
+                    <TabsTrigger 
+                      value="challenge"
+                      className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
+                    >
+                      Challenge
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="goal"
+                      className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
+                    >
+                      Goal
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="result"
+                      className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
+                    >
+                      Result
+                    </TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="challenge" className="mt-0">
+                    <MoreProjectDetailsCard 
+                      title="Challenge" 
+                      value={work.challenge || 'N/A'} 
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="goal" className="mt-0">
+                    <MoreProjectDetailsCard 
+                      title="Goal" 
+                      value={work.goal || 'N/A'} 
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="result" className="mt-0">
+                    <MoreProjectDetailsCard 
+                      title="Result" 
+                      value={work.result || 'N/A'} 
+                    />
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </BlurFade>
           </div>
         </section>
 
         {gallery.length > 0 && (
-          <>
-            <div className="w-full flex justify-start items-start max-w-screen-xl px-4">
-              <h3 className="text-4xl text-zinc-300 my-2 md:my-10">Gallery</h3>
-            </div>
-            <section className="w-screen p-4 gap-10 mb-16 md:mb-32">
-              <div className="w-full">
-                <LayoutGrid cards={gallery} />
+          <BlurFade delay={0.3} inView className="w-full mx-auto flex flex-col items-center justify-center">
+            <section className="max-w-screen-xl w-full px-4 pt-16 md:pt-24 pb-16 md:pb-32">
+              <div className="flex flex-col gap-8 md:gap-12">
+                {/* Gallery Header */}
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-px w-12 bg-zinc-400 dark:bg-zinc-600"></div>
+                    <h3 className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">
+                      Project Gallery
+                    </h3>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl text-zinc-800 dark:text-zinc-200 font-light">
+                    Visual Showcase
+                  </h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg max-w-2xl">
+                    Explore the visual journey of this project through carefully curated screenshots and design elements.
+                  </p>
+                </div>
+
+                {/* Gallery Grid */}
+                <div className="w-full">
+                  <ImageGallery cards={gallery} />
+                </div>
               </div>
             </section>
-          </>
+          </BlurFade>
         )}
       </div>
     </>
@@ -220,9 +299,16 @@ const ProjectInfoCard = ({ title, value, isLink }: { title: string, value: strin
 
 const MoreProjectDetailsCard = ({ title, value }: { title: string, value: string }) => {
   return (
-    <div className="flex flex-col gap-2 items-start bg-zinc-800 border border-zinc-700 p-10">
-      <h4 className="text-zinc-200 text-2xl font-light">{title}</h4>
-      <p className="text-zinc-400 text-lg">{value}</p>
+    <div className="flex flex-col gap-4 items-start bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 p-6 md:p-8 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-300 group">
+      <div className="flex items-center gap-3 w-full">
+        <div className="h-1 w-8 bg-zinc-400 dark:bg-zinc-600 group-hover:w-12 transition-all duration-300"></div>
+        <h4 className="text-zinc-800 dark:text-zinc-200 text-xl md:text-2xl font-light uppercase tracking-wide">
+          {title}
+        </h4>
+      </div>
+      <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed pl-11">
+        {value}
+      </p>
     </div>
   );
 }
