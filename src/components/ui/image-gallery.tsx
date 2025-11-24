@@ -97,17 +97,21 @@ export const ImageGallery = ({ cards }: ImageGalleryProps) => {
             />
             {/* Overlay on hover */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            {/* Image info on hover */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <h4 className="text-white font-semibold text-sm md:text-base mb-1">
-                {card.name}
-              </h4>
-              {card.description && (
-                <p className="text-zinc-300 text-xs md:text-sm line-clamp-2">
-                  {card.description}
-                </p>
-              )}
-            </div>
+            {/* Image info on hover - only show if name or description exists */}
+            {(card.name || card.description) && (
+              <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                {card.name && (
+                  <h4 className="text-white font-semibold text-sm md:text-base mb-1">
+                    {card.name}
+                  </h4>
+                )}
+                {card.description && (
+                  <p className="text-zinc-300 text-xs md:text-sm line-clamp-2">
+                    {card.description}
+                  </p>
+                )}
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
@@ -193,9 +197,15 @@ export const ImageGallery = ({ cards }: ImageGalleryProps) => {
                     {/* Image Info - Fixed height to prevent shifting */}
                     <div className="mt-4 flex items-start justify-between min-h-[80px] flex-shrink-0">
                       <div className="flex-1 pr-4">
-                        <h3 className="text-xl md:text-2xl font-semibold text-zinc-800 dark:text-zinc-200 mb-1">
-                          {cards[selectedIndex].name}
-                        </h3>
+                        {cards[selectedIndex].name ? (
+                          <h3 className="text-xl md:text-2xl font-semibold text-zinc-800 dark:text-zinc-200 mb-1">
+                            {cards[selectedIndex].name}
+                          </h3>
+                        ) : (
+                          <h3 className="text-xl md:text-2xl font-semibold text-zinc-800 dark:text-zinc-200 mb-1">
+                            Gallery Image {selectedIndex + 1}
+                          </h3>
+                        )}
                         {cards[selectedIndex].description && (
                           <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base line-clamp-2">
                             {cards[selectedIndex].description}

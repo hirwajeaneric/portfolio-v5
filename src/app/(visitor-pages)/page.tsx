@@ -252,7 +252,7 @@ export default function page() {
                         </Link>
                     </div>
                     <div className="flex flex-wrap gap-4 mt-10 w-full justify-between">
-                        {projects.map((project) => <ProjectDisplayCard key={project.name} project={project} />) || <>No projects found</>}
+                        {projects.slice(0, 4).map((project) => <ProjectDisplayCard key={project.name} project={project} />) || <>No projects found</>}
                     </div>
                 </section>
                 <section id="process" className="max-w-screen-xl flex flex-col mx-auto justify-center items-center w-full px-4">
