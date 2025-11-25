@@ -121,7 +121,7 @@ function TechnologyIconsGrid() {
 
     return (
         <BlurFade delay={0.1} inView className="w-full flex flex-col justify-between items-center">
-            <Accordion type="multiple" defaultValue={[categories[0]]} className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg bg-zinc-100 dark:bg-zinc-900 divide-y divide-zinc-300 dark:divide-zinc-700 min-w-full">
+            <Accordion type="multiple" defaultValue={[categories[0]]} className="w-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 divide-y divide-zinc-300 dark:divide-zinc-700 min-w-full">
                 {categories.map((category) => {
                     const categoryTechs = technologies.filter(tech => technologyIcons[tech]?.category === category);
 
@@ -133,7 +133,7 @@ function TechnologyIconsGrid() {
                                     ({categoryTechs.length})
                                 </span> */}
                             </AccordionTrigger>
-                            <AccordionContent className="px-4 sm:px-6 pb-4 pt-2">
+                            <AccordionContent className="px-4 sm:px-6 pb-4 pt-4">
                                 <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
                                     {categoryTechs.map((tech, index) => {
                                         const IconComponent = technologyIcons[tech]?.icon;
@@ -146,7 +146,7 @@ function TechnologyIconsGrid() {
                                                 inView
                                                 className="group"
                                             >
-                                                <div className="relative flex flex-col items-center justify-center p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-300 cursor-default">
+                                                <div className="relative flex flex-col items-center justify-center p-3 border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-300 cursor-default">
                                                     <IconComponent
                                                         className="w-6 h-6 sm:w-7 sm:h-7 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-300"
                                                     />

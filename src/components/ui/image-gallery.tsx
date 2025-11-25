@@ -139,7 +139,7 @@ export const ImageGallery = ({ cards }: ImageGalleryProps) => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
-                    className="relative w-full max-w-6xl h-[90vh] max-h-[90vh] flex flex-col pointer-events-auto"
+                    className="relative w-full max-w-6xl h-[70vh] max-h-[70vh] flex flex-col pointer-events-auto"
                     onClick={(e) => e.stopPropagation()}
                   >
                     {/* Close Button */}

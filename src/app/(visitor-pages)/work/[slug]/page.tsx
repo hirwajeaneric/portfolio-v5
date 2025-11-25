@@ -17,13 +17,13 @@ export async function generateStaticParams() {
 }
 
 // Dynamic metadata generation
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { slug: string } 
+export async function generateMetadata({
+  params
+}: {
+  params: { slug: string }
 }): Promise<Metadata> {
   const work = await getWork(params.slug);
-  
+
   if (!work) {
     return {
       title: 'Work Not Found',
@@ -37,30 +37,30 @@ export async function generateMetadata({
     openGraph: {
       title: `${work.name} - Project`,
       description: work.description || `${work.name} project by Jean Eric Hirwa`,
-      images: [{ 
-        url: work.image, 
-        width: 800, 
-        height: 600 
+      images: [{
+        url: work.image,
+        width: 800,
+        height: 600
       }],
       url: `https://www.erichirwa.com/work/${work.slug}`
     }
   };
 }
 
-export default async function WorkDetailPage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function WorkDetailPage({
+  params
+}: {
+  params: { slug: string }
 }) {
   const work = await getWork(params.slug);
-  
+
   // Early return if work is not found
   if (!work) {
     return <div className="container mx-auto py-20 text-center">Project Not Found</div>;
   }
 
   const gallery = await getGallery(work.id);
-  
+
   // Dynamically calculate available links
   const availableLinks = [
     work.otherLinks[0].link,
@@ -91,9 +91,9 @@ export default async function WorkDetailPage({
 
   return (
     <>
-      <script 
-        type="application/ld+json" 
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       <div className="flex flex-col items-center justify-start w-full scroll-smooth">
@@ -101,55 +101,55 @@ export default async function WorkDetailPage({
           <h1 className="text-5xl md:text-7xl flex flex-col font-extralight text-center text-zinc-800 dark:text-zinc-300">
             {work.name}
           </h1>
-          
+
           {work.description && (
             <h2 className="text-center mt-3 md:mt-6 mb-8 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">
               {work.description}
             </h2>
           )}
-          
-          <div 
+
+          <div
             className={cn(
-              availableLinks === 3 ? "lg:grid-cols-3" : 
-              availableLinks === 4 ? "lg:grid-cols-4" : "lg:grid-cols-2", 
+              availableLinks === 3 ? "lg:grid-cols-3" :
+                availableLinks === 4 ? "lg:grid-cols-4" : "lg:grid-cols-2",
               "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 w-full md:w-3/4 py-3 items-center justify-between"
             )}
           >
             <ProjectInfoCard title="TIMELINE" value={work.timeline || 'N/A'} />
             <ProjectInfoCard title="CATEGORY" value={work.category || 'N/A'} />
-            
+
             {work.otherLinks[0].link && (
-              <Link 
-                href={work.otherLinks[0].link} 
-                target="_blank" 
+              <Link
+                href={work.otherLinks[0].link}
+                target="_blank"
                 rel="noopener noreferrer"
               >
-                <ProjectInfoCard 
-                  title="SOURCE CODE" 
-                  value={work.otherLinks[0].name || 'Unavailable'} 
-                  isLink 
+                <ProjectInfoCard
+                  title="SOURCE CODE"
+                  value={work.otherLinks[0].name || 'Unavailable'}
+                  isLink
                 />
               </Link>
             )}
-            
+
             {work.otherLinks[1]?.link && (
-              <Link 
-                href={work.otherLinks[1]?.link} 
-                target="_blank" 
+              <Link
+                href={work.otherLinks[1]?.link}
+                target="_blank"
                 rel="noopener noreferrer"
               >
-                <ProjectInfoCard 
-                  title="LIVE DEMO" 
-                  value={work.name || 'Unavailable'} 
-                  isLink 
+                <ProjectInfoCard
+                  title="LIVE DEMO"
+                  value={work.name || 'Unavailable'}
+                  isLink
                 />
               </Link>
             )}
           </div>
-          
+
           {(work.deliverable || work.challenge || work.goal || work.result) && (
-            <Link 
-              href="#details" 
+            <Link
+              href="#details"
               className="flex text-sm items-center justify-center text-zinc-300 gap-4 mt-5 md:mt-10"
             >
               <span className="border border-zinc-800 dark:border-zinc-500 p-2 rounded-full bg-zinc-300 dark:bg-zinc-800">
@@ -162,16 +162,16 @@ export default async function WorkDetailPage({
           )}
         </section>
 
-        <section 
-          id="details" 
+        <section
+          id="details"
           className="max-w-screen-xl flex flex-col mx-auto justify-center items-center w-full px-4 pt-8 md:pt-16"
         >
-          <Image 
-            src={work.image || ''} 
-            alt={`Image of ${work.name}`} 
-            width={2000} 
-            height={1000} 
-            className="w-full" 
+          <Image
+            src={work.image || ''}
+            alt={`Image of ${work.name}`}
+            width={2000}
+            height={1000}
+            className="w-full"
           />
         </section>
 
@@ -228,8 +228,8 @@ export default async function WorkDetailPage({
           <section className="max-w-screen-xl w-full px-4 pt-16 md:pt-32 pb-8 md:pb-16">
             <div className={cn(
               "grid gap-12 lg:gap-16",
-              work.deliverable && (work.challenge || work.goal || work.result) 
-                ? "grid-cols-1 lg:grid-cols-2" 
+              work.deliverable && (work.challenge || work.goal || work.result)
+                ? "grid-cols-1 lg:grid-cols-2"
                 : "grid-cols-1"
             )}>
               {/* Deliverables Section */}
@@ -250,7 +250,7 @@ export default async function WorkDetailPage({
                   </div>
                 </BlurFade>
               )}
-              
+
               {/* Challenge, Goal, Result - Interactive Tabs */}
               {(work.challenge || work.goal || work.result) && (
                 <BlurFade delay={0.2} inView>
@@ -261,17 +261,17 @@ export default async function WorkDetailPage({
                         Project Details
                       </h3>
                     </div>
-                    <Tabs 
+                    <Tabs
                       defaultValue={
-                        work.challenge ? "challenge" : 
-                        work.goal ? "goal" : 
-                        "result"
-                      } 
+                        work.challenge ? "challenge" :
+                          work.goal ? "goal" :
+                            "result"
+                      }
                       className="w-full"
                     >
                       <TabsList className="w-full justify-start h-auto p-1 bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg flex-wrap gap-1 mb-4">
                         {work.challenge && (
-                          <TabsTrigger 
+                          <TabsTrigger
                             value="challenge"
                             className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
                           >
@@ -279,7 +279,7 @@ export default async function WorkDetailPage({
                           </TabsTrigger>
                         )}
                         {work.goal && (
-                          <TabsTrigger 
+                          <TabsTrigger
                             value="goal"
                             className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
                           >
@@ -287,7 +287,7 @@ export default async function WorkDetailPage({
                           </TabsTrigger>
                         )}
                         {work.result && (
-                          <TabsTrigger 
+                          <TabsTrigger
                             value="result"
                             className="text-xs sm:text-sm px-4 py-2 data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 transition-all"
                           >
@@ -295,30 +295,30 @@ export default async function WorkDetailPage({
                           </TabsTrigger>
                         )}
                       </TabsList>
-                      
+
                       {work.challenge && (
                         <TabsContent value="challenge" className="mt-0">
-                          <MoreProjectDetailsCard 
-                            title="Challenge" 
-                            value={work.challenge} 
+                          <MoreProjectDetailsCard
+                            title="Challenge"
+                            value={work.challenge}
                           />
                         </TabsContent>
                       )}
-                      
+
                       {work.goal && (
                         <TabsContent value="goal" className="mt-0">
-                          <MoreProjectDetailsCard 
-                            title="Goal" 
-                            value={work.goal} 
+                          <MoreProjectDetailsCard
+                            title="Goal"
+                            value={work.goal}
                           />
                         </TabsContent>
                       )}
-                      
+
                       {work.result && (
                         <TabsContent value="result" className="mt-0">
-                          <MoreProjectDetailsCard 
-                            title="Result" 
-                            value={work.result} 
+                          <MoreProjectDetailsCard
+                            title="Result"
+                            value={work.result}
                           />
                         </TabsContent>
                       )}
@@ -366,9 +366,9 @@ export default async function WorkDetailPage({
 // Components remain the same as in the original code
 const ProjectInfoCard = ({ title, value, isLink }: { title: string, value: string, isLink?: boolean }) => {
   return (
-    <div 
+    <div
       className={cn(
-        isLink ? "border border-zinc-300" : "border border-zinc-700", 
+        isLink ? "border border-zinc-300" : "border border-zinc-700",
         "flex flex-col gap-1 items-center bg-zinc-800 py-3 px-4"
       )}
     >

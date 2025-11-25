@@ -264,15 +264,15 @@ export default function page() {
                         service.elements.map((el, index) => {
                           if (index !== service.elements.length - 1) {
                             return (
-                              <div key={index} className={cn("border-b border-zinc-200 dark:border-zinc-700 flex flex-wrap w-full mt-8 pb-8 md:pb-12")}>
-                                <h4 className="uppercase mb-4 md:mb-0 text-sm md:text-base w-full md:w-1/4 font-semibold text-zinc-800 dark:text-zinc-300">{el.title}</h4>
+                              <div key={index} className={cn("border-b border-zinc-200 dark:border-zinc-700 flex flex-wrap w-full mt-4 md:mt-8 pb-4 md:pb-8")}>
+                                <h4 className="uppercase mb-2 md:mb-0 text-sm md:text-base w-full md:w-1/4 font-semibold text-zinc-800 dark:text-zinc-300">{el.title}</h4>
                                 <p className="text-sm md:text-base w-full md:w-3/4 text-zinc-600 dark:text-zinc-400">{el.description}</p>
                               </div>
                             )
                           }
                           return (
-                            <div key={index} className={cn("flex flex-wrap w-full mt-8")}>
-                              <h4 className="uppercase mb-4 md:mb-0 text-sm md:text-base w-full md:w-1/4 font-semibold text-zinc-800 dark:text-zinc-300">{el.title}</h4>
+                            <div key={index} className={cn("flex flex-wrap w-full mt-4 md:mt-8")}>
+                              <h4 className="uppercase mb-2 md:mb-0 text-sm md:text-base w-full md:w-1/4 font-semibold text-zinc-800 dark:text-zinc-300">{el.title}</h4>
                               <p className="text-sm md:text-base w-full md:w-3/4 text-zinc-600 dark:text-zinc-400">{el.description}</p>
                             </div>
                           )

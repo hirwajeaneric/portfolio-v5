@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { GitHubLogoIcon, LinkedInLogoIcon, } from "@radix-ui/react-icons";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowRightIcon } from "lucide-react";
 import { FaYoutube } from "react-icons/fa6";
 import { FaMedium } from "react-icons/fa";
 
@@ -37,21 +37,20 @@ export default function SocialAccountsGroup() {
                     <ArrowRightIcon className="group-hover:-rotate-45 transition-transform duration-300" />
                 </Link>
             </div>
-            <div className="mt-6 w-full p-4 md:p-6 bg-gradient-to-r from-zinc-800 to-zinc-900 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-700 dark:border-zinc-600 rounded-lg">
-                <div className="flex flex-col gap-3">
-                    <h3 className="text-zinc-200 text-lg md:text-xl font-semibold">Transform Your Life</h3>
-                    <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        Discover personal growth through science-backed micro-habits. Join <strong className="text-zinc-200">With Eric Hirwa</strong> for mentorship, life coaching, and guidance designed for high-achievers and everyday people.
-                    </p>
-                    <Link
-                        href="https://with.erichirwa.com"
-                        target="_blank"
-                        className="flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-zinc-200 dark:bg-zinc-600 text-zinc-900 dark:text-zinc-100 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-500 transition-colors duration-300 font-medium text-sm md:text-base"
-                    >
-                        <span>Visit With Eric Hirwa</span>
-                        <ArrowRightIcon className="w-4 h-4" />
-                    </Link>
-                </div>
+            <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-gradient-to-r from-zinc-800 to-zinc-900 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-700 dark:border-zinc-600">
+                <h2 className="text-zinc-200 uppercase text-sm md:text-base">Personal Growth</h2>
+                <h3 className="text-zinc-100 text-2xl md:text-4xl leading-normal md:font-light">Transform Your Life with With Eric Hirwa</h3>
+                <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+                    Beyond my technical work, I&apos;m passionate about personal growth and helping others transform their lives through science-backed micro-habits. Visit <strong className="text-zinc-200">With Eric Hirwa</strong> for mentorship, life coaching, and guidance designed for high-achievers and everyday people seeking calm, clarity, and purpose.
+                </p>
+                <Link
+                    href="https://with.erichirwa.com"
+                    target="_blank"
+                    className="flex items-center justify-center gap-2 mt-2 px-6 py-3 bg-zinc-200 dark:bg-zinc-600 text-zinc-900 dark:text-zinc-100 border border-zinc-100 dark:border-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-500 transition-colors duration-300 font-medium text-sm md:text-base w-fit"
+                >
+                    <span>Explore With Eric Hirwa</span>
+                    <ArrowDownIcon className="w-4 h-4 rotate-[-90deg]" />
+                </Link>
             </div>
         </>
     )
