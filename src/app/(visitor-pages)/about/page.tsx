@@ -84,9 +84,6 @@ export default function page() {
               <h3 className="text-zinc-300 text-4xl leading-normal md:font-light">Your Partner in Bringing Your Web Design Vision to Life</h3>
               <p className="mb-8">
                 Jean Eric Hirwa is a passionate, dedicated, and creative web developer with a proven track record of delivering exceptional results. He is known for his ability to design visually stunning websites, develop robust applications, and deliver high-quality content. He is also known for his ability to work well with teams and collaborate effectively to create a successful and engaging online presence.
-                <br />
-                <br />
-                Jean Eric Hirwa is a passionate, dedicated, and creative web developer with a proven track record of delivering exceptional results. He is known for his ability to design visually stunning websites, develop robust applications, and deliver high-quality content. He is also known for his ability to work well with teams and collaborate effectively to create a successful and engaging online presence.
               </p>
               {/* <Image src="/1718313379119.jpeg" alt="Picture of Jean Eric Hirwa" className="bg-black border border-zinc-600" width={684} height={1000} /> */}
             </div>
