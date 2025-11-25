@@ -68,8 +68,8 @@ export default function page() {
       category: 'Graphic and UI/UX Design',
       title: 'Delivering Messages Through Visual Communication',
       image: {
-        src: 'https://images.pexels.com/photos/196646/pexels-photo-196646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        alt: 'Blue Pen Beside Black Smartphone on White Paper'
+        src: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Design tools and creative workspace for UI/UX design'
       },
       elements: [
         {
@@ -102,8 +102,8 @@ export default function page() {
       category: 'Software Development',
       title: 'Creating Solutions that Drive Results',
       image: {
-        src: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        alt: 'Black Smartphone on White Paper'
+        src: 'https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Code on computer screen showing software development'
       },
       elements: [
         {
@@ -158,8 +158,8 @@ export default function page() {
       category: 'DevOps and Cloud Computing',
       title: 'Automating Your Infrastructure',
       image: {
-        src: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        alt: 'Black Smartphone on White Paper'
+        src: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Cloud computing and infrastructure visualization'
       },
       elements: [
         {

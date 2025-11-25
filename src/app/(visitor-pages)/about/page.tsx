@@ -91,6 +91,21 @@ export default function page() {
               {/* <Image src="/1718313379119.jpeg" alt="Picture of Jean Eric Hirwa" className="bg-black border border-zinc-600" width={684} height={1000} /> */}
             </div>
             <SocialAccountsGroup />
+            <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-gradient-to-r from-zinc-800 to-zinc-900 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-700 dark:border-zinc-600">
+                <h2 className="text-zinc-200 uppercase text-sm md:text-base">Personal Growth</h2>
+                <h3 className="text-zinc-100 text-2xl md:text-4xl leading-normal md:font-light">Transform Your Life with With Eric Hirwa</h3>
+                <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+                    Beyond my technical work, I&apos;m passionate about personal growth and helping others transform their lives through science-backed micro-habits. Visit <strong className="text-zinc-200">With Eric Hirwa</strong> for mentorship, life coaching, and guidance designed for high-achievers and everyday people seeking calm, clarity, and purpose.
+                </p>
+                <Link 
+                    href="https://with.erichirwa.com" 
+                    target="_blank"
+                    className="flex items-center justify-center gap-2 mt-2 px-6 py-3 bg-zinc-200 dark:bg-zinc-600 text-zinc-900 dark:text-zinc-100 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-500 transition-colors duration-300 font-medium text-sm md:text-base w-fit"
+                >
+                    <span>Explore With Eric Hirwa</span>
+                    <ArrowDownIcon className="w-4 h-4 rotate-[-90deg]" />
+                </Link>
+            </div>
             <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
               <h2 className="text-zinc-300 uppercase">Award & Certificates</h2>
               <div className="flex flex-col w-full">

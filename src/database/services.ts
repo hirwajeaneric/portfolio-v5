@@ -3,6 +3,10 @@ interface Services {
     description: string;
     slug: string;
     technologies: string[];
+    image?: {
+        src: string;
+        alt: string;
+    };
 }
 
 export const MyServices: Services[] = [
@@ -15,7 +19,11 @@ export const MyServices: Services[] = [
             "NestJS", "Next.js", "Angular", "Spring Boot", "Prisma", "Node.js", "Express.js", "PostgreSQL", "MySQL", "MongoDB", 
             "Firebase", "AWS", "Vercel", "Cloudflare", "Netlify", "Render", "Jest", 
             "Docker", "Git", "Jira", "GitHub", "Figma"
-        ]
+        ],
+        image: {
+            src: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            alt: "Code on computer screen showing software development"
+        }
     },
     {
         name: "DevOps and Cloud Computing",
@@ -24,7 +32,11 @@ export const MyServices: Services[] = [
         technologies: [
             "Docker", "Kubernetes", "AWS", "Terraform", "Ansible", "Jenkins", "Git", 
             "CI/CD", "Linux", "Bash", "GitHub Actions", "Prometheus", "Grafana"
-        ]
+        ],
+        image: {
+            src: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            alt: "Cloud computing and infrastructure visualization"
+        }
     },
     {
         name: "Graphic and UI/UX Design",
@@ -33,6 +45,10 @@ export const MyServices: Services[] = [
         technologies: [
             "Adobe Photoshop", "Adobe Illustrator", "Adobe XD", "Figma", "Sketch", 
             "InDesign", "Canva"
-        ]
+        ],
+        image: {
+            src: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            alt: "Design tools and creative workspace for UI/UX design"
+        }
     }
 ];
