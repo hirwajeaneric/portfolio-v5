@@ -38,17 +38,30 @@ export const MyServices: Services[] = [
             alt: "Cloud computing and infrastructure visualization"
         }
     },
+    // {
+    //     name: "Graphic and UI/UX Design",
+    //     description: "I create visually appealing and professional designs, focusing on brand identity, UI/UX design, and marketing materials. My designs enhance user engagement and effectively communicate ideas through digital mediums.",
+    //     slug: "graphic-and-ui-ux-design",
+    //     technologies: [
+    //         "Adobe Photoshop", "Adobe Illustrator", "Adobe XD", "Figma", "Sketch", 
+    //         "InDesign", "Canva"
+    //     ],
+    //     image: {
+    //         src: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    //         alt: "Design tools and creative workspace for UI/UX design"
+    //     }
+    // },
     {
-        name: "Graphic and UI/UX Design",
-        description: "I create visually appealing and professional designs, focusing on brand identity, UI/UX design, and marketing materials. My designs enhance user engagement and effectively communicate ideas through digital mediums.",
-        slug: "graphic-and-ui-ux-design",
+        name: "Mentorship and Life Coaching",
+        description: "I provide personal growth mentoring and life coaching services focused on science-backed micro-habits for lasting transformation. Through personalized guidance, I help high-achievers and everyday people develop positive habits, achieve personal goals, and improve their overall well-being.",
+        slug: "mentorship-and-life-coaching",
         technologies: [
-            "Adobe Photoshop", "Adobe Illustrator", "Adobe XD", "Figma", "Sketch", 
-            "InDesign", "Canva"
+            "Personal Growth", "Micro-Habits", "Life Coaching", "Mentoring", "Mindfulness", 
+            "Productivity", "Mental Clarity", "Goal Setting", "Habit Formation", "Self-Improvement"
         ],
         image: {
-            src: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            alt: "Design tools and creative workspace for UI/UX design"
+            src: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            alt: "Mentorship and life coaching session with personal growth focus"
         }
     }
 ];

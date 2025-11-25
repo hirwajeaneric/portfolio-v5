@@ -65,40 +65,6 @@ type Services = {
 export default function page() {
   const services: Services[] = [
     {
-      category: 'Graphic and UI/UX Design',
-      title: 'Delivering Messages Through Visual Communication',
-      image: {
-        src: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        alt: 'Design tools and creative workspace for UI/UX design'
-      },
-      elements: [
-        {
-          title: 'Concept',
-          description: "I take time to understand your business needs and audience to develop a unique concept for your website. I'll create wireframes that serve as the foundation for your site's design and functionality."
-        },
-        {
-          title: 'UX / Ui Design',
-          description: "I'll design a user-friendly interface that is visually appealing and engages your target audience. Your website will be created to meet your brand's needs and goals while ensuring a seamless user experience."
-        },
-        {
-          title: 'Prototype',
-          description: "With an interactive prototype, you'll have the ability to test your website's functionality before it goes live. This will ensure that your website's design and user experience are optimized for your audience's needs and preferences."
-        },
-        {
-          title: 'Logo Design',
-          description: "I'll create a visually appealing and unique logo for your business. Your logo will be optimized for search engines and designed to meet your brand's needs and goals."
-        },
-        {
-          title: 'Brand Guidelines',
-          description: "I'll create a comprehensive brand guidelines that outlines your brand's values, colors, fonts, and other visual elements. Your brand guidelines will be optimized for search engines and designed to meet your brand's needs and goals."
-        },
-        {
-          title: 'Marketing Materials',
-          description: "I'll create promotional materials such as posters, banners, and logos for your brand. These materials will help you promote your website and increase your brand's visibility."
-        }
-      ]
-    },
-    {
       category: 'Software Development',
       title: 'Creating Solutions that Drive Results',
       image: {
@@ -117,40 +83,6 @@ export default function page() {
         {
           title: 'Testing and Deployment',
           description: "I'll test your website to ensure that it is working correctly and meets your brand's needs and goals. I'll deploy your website to a live server and provide you with ongoing support and maintenance."
-        }
-      ]
-    },
-    {
-      category: 'SEO and Social Media Marketing',
-      title: 'Boosting Your Online Presence',
-      image: {
-        src: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        alt: 'Black Smartphone on White Paper'
-      },
-      elements: [
-        {
-          title: 'Keyword Research',
-          description: "I'll conduct keyword research to identify the most relevant and high-traffic keywords for your business. This will help your website rank higher in search engine results pages (SERPs) and attract more organic traffic."
-        },
-        {
-          title: 'On-Page Optimization',
-          description: "I'll optimize your website's on-page elements, including meta tags, headings, and content, to improve its visibility and ranking in search engine results pages (SERPs)."
-        },
-        {
-          title: 'Link Building',
-          description: "I'll build a network of high-quality back matter links to your website to improve its authority and ranking in search engine results pages (SERPs)."
-        },
-        {
-          title: 'Content Creation',
-          description: "I'll create engaging and shareable content that resonates with your target audience. Your social media channels will be optimized for search engines and designed to meet your brand's needs and goals."
-        },
-        {
-          title: 'Community Management',
-          description: "I'll manage your social media channels, respond to comments and messages, and engage with your audience. Your social media channels will be optimized for search engines and designed to meet your brand's needs and goals."
-        },
-        {
-          title: 'Analytics',
-          description: "I'll track and analyze your social media performance to determine how much social media is driving traffic to your website and how much social media is driving traffic to your website."
         }
       ]
     },
@@ -193,6 +125,40 @@ export default function page() {
       ]
     },
     {
+      category: 'Mentorship and Life Coaching',
+      title: 'Personal Growth Through Science-Backed Micro-Habits',
+      image: {
+        src: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Mentorship and life coaching session with personal growth focus'
+      },
+      elements: [
+        {
+          title: 'One-on-One Mentoring',
+          description: "I provide personalized mentoring sessions focused on building sustainable micro-habits tailored to your goals. Through structured sessions, I help you develop positive habits, achieve personal goals, and improve your overall well-being."
+        },
+        {
+          title: 'Habit Formation Coaching',
+          description: "I guide you through the process of forming science-backed micro-habits that compound over time to create significant life changes. Learn how to build habits that stick and transform your daily routine."
+        },
+        {
+          title: 'Personal Growth Packages',
+          description: "I offer structured packages designed for different levels of transformation - from reset and clarity sessions to deep transformation programs and year-long mentorship. Each package is designed to meet you where you are in your journey."
+        },
+        {
+          title: 'Goal Setting & Achievement',
+          description: "I help you set meaningful goals and create actionable plans to achieve them. Through regular check-ins and personalized guidance, I support you in making consistent progress toward your aspirations."
+        },
+        {
+          title: 'Mindfulness & Mental Clarity',
+          description: "I provide guidance on developing mindfulness practices and achieving mental clarity. Learn techniques to manage stress, improve focus, and cultivate a sense of calm and purpose in your daily life."
+        },
+        {
+          title: 'Accountability & Support',
+          description: "I offer ongoing accountability and support between sessions through voice notes, tracking systems, and regular check-ins. This ensures you stay on track and make continuous progress toward your goals."
+        }
+      ]
+    },
+    {
       category: 'Consultancy',
       title: 'Training and Workshops',
       image: {
@@ -209,7 +175,41 @@ export default function page() {
           description: "I provide workshops on a wide range of topics, including web development, mobile app development, and data science. Your workshops will be optimized for search engines and designed to meet your brand's needs and goals."
         },
       ]
-    }
+    },
+    {
+      category: 'Graphic and UI/UX Design',
+      title: 'Delivering Messages Through Visual Communication',
+      image: {
+        src: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Design tools and creative workspace for UI/UX design'
+      },
+      elements: [
+        {
+          title: 'Concept',
+          description: "I take time to understand your business needs and audience to develop a unique concept for your website. I'll create wireframes that serve as the foundation for your site's design and functionality."
+        },
+        {
+          title: 'UX / Ui Design',
+          description: "I'll design a user-friendly interface that is visually appealing and engages your target audience. Your website will be created to meet your brand's needs and goals while ensuring a seamless user experience."
+        },
+        {
+          title: 'Prototype',
+          description: "With an interactive prototype, you'll have the ability to test your website's functionality before it goes live. This will ensure that your website's design and user experience are optimized for your audience's needs and preferences."
+        },
+        {
+          title: 'Logo Design',
+          description: "I'll create a visually appealing and unique logo for your business. Your logo will be optimized for search engines and designed to meet your brand's needs and goals."
+        },
+        {
+          title: 'Brand Guidelines',
+          description: "I'll create a comprehensive brand guidelines that outlines your brand's values, colors, fonts, and other visual elements. Your brand guidelines will be optimized for search engines and designed to meet your brand's needs and goals."
+        },
+        {
+          title: 'Marketing Materials',
+          description: "I'll create promotional materials such as posters, banners, and logos for your brand. These materials will help you promote your website and increase your brand's visibility."
+        }
+      ]
+    },
   ];
 
   return (
@@ -220,9 +220,9 @@ export default function page() {
         <section id="process" className="max-w-screen-xl flex flex-col mx-auto justify-center items-center pt-40 md:pt-48 pb-12 md:pb-20 w-full px-4">
           <h1 className="text-5xl md:text-8xl flex flex-col font-extralight items-center text-zinc-800 dark:text-zinc-300">
             <span className="text-center">Software Development</span>
-            <em className="pt-serif-regular-italic">& Digital Arts</em>
+            <em className="pt-serif-regular-italic">& Consultancy</em>
           </h1>
-          <h2 className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">Premium web design, development, and SEO services to help your business stand out</h2>
+          <h2 className="text-center mt-4 md:mt-8 mb-12 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">Premium software development, devops, mentorship, and digital arts services to help your business stand out.</h2>
           <Link href="#services" className="flex items-center justify-center text-zinc-300 gap-4">
             <span className="border border-zinc-800 dark:border-zinc-500 p-3 rounded-full bg-zinc-300 dark:bg-zinc-700">
               <ArrowDownIcon className="" />
