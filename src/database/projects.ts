@@ -4,6 +4,7 @@ import {
   FaCss3Alt,
   FaGithub,
   FaExternalLinkAlt,
+  FaAngular,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -69,7 +70,7 @@ const projects: ProjectTypes[] = [
     timeline: "7 weeks",
     slug: "shecancode-bootcamp",
     description: "An better and improved version of SheCanCODE Website.",
-    link: "https://shecancodeschool.org",
+    link: "https://www.shecancodeschool.org/",
     image: "/shecancode.png",
     gallery: [
       "/landing.png",
@@ -89,7 +90,7 @@ const projects: ProjectTypes[] = [
       {
         name: "Live Demo",
         icon: FaExternalLinkAlt,
-        link: "https://shecancodeschool.org",
+        link: "https://www.shecancodeschool.org/",
       },
     ],
   },
@@ -104,7 +105,7 @@ const projects: ProjectTypes[] = [
       "A web application that helps users build consistency through small daily actions.",
     client: "Myself",
     timeline: "1 week",
-    link: "https://tinystepsaday.com",
+    link: "https://www.tinystepsaday.com/",
     image: "/tinysteps-4.png",
     technologies: [
       { name: "React", icon: FaReact },
@@ -132,7 +133,7 @@ const projects: ProjectTypes[] = [
       {
         name: "Live Demo",
         icon: FaExternalLinkAlt,
-        link: "https://tinystepsaday.com",
+        link: "https://www.tinystepsaday.com/",
       },
     ],
   },
@@ -161,6 +162,40 @@ const projects: ProjectTypes[] = [
         name: "Live Demo",
         icon: FaExternalLinkAlt,
         link: "https://www.africanleadershub.org",
+      },
+    ],
+  },
+  {
+    id: "7",
+    name: "Sonarwa Life Insurance Co -  Insurance Management System",
+    category: "Software",
+    slug: "sonarwa-life-insurance-co-insurance-management-system",
+    deliverable: "An insurance management system for Sonarwa Life Insurance Company",
+    description: "An insurance management system for Sonarwa Life Insurance Company",
+    client: "Sonarwa Life Insurance Company",
+    timeline: "Continuous",
+    link: "https://apps.sonarwalife.co.rw",
+    image: "/sonarwa-1.png",
+    technologies: [
+      { name: "Angular", icon: FaAngular },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Shadcn UI", icon: SiShadcnui },
+      { name: "NestJS", icon: SiNestjs },
+      { name: "PostgreSQL", icon: SiPostgresql },
+    ],
+    gallery: [
+      "/sonarwa-1.png",
+      "/sonarwa-2.png",
+      "/sonarwa-3.png",
+      "/sonarwa-4.png",
+    ],
+    type: "Software",
+    otherLinks: [
+      {
+        name: "Website",
+        icon: FaExternalLinkAlt,
+        link: "https://apps.sonarwalife.co.rw",
       },
     ],
   },

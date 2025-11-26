@@ -39,7 +39,7 @@ export default function SocialAccountsGroup() {
             </div>
             <div className="flex flex-col gap-3 mt-4 md:gap-6 w-full p-6 md:p-14 bg-gradient-to-r from-zinc-800 to-zinc-900 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-700 dark:border-zinc-600">
                 <h2 className="text-zinc-200 uppercase text-sm md:text-base">Personal Growth</h2>
-                <h3 className="text-zinc-100 text-2xl md:text-4xl leading-normal md:font-light">Transform Your Life with With Eric Hirwa</h3>
+                <h3 className="text-zinc-100 text-2xl md:text-4xl leading-normal md:font-light">Transform Your Life <strong className="text-zinc-200 font-bold">With Eric Hirwa</strong></h3>
                 <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
                     Beyond my technical work, I&apos;m passionate about personal growth and helping others transform their lives through science-backed micro-habits. Visit <strong className="text-zinc-200">With Eric Hirwa</strong> for mentorship, life coaching, and guidance designed for high-achievers and everyday people seeking calm, clarity, and purpose.
                 </p>

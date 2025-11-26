@@ -358,4 +358,24 @@ export const galleries: Gallery[] = [
     projectId: "6",
     thumbnail: "/ebsds-26.png",
   },
+  {
+    id: 60,
+    projectId: "7",
+    thumbnail: "/sonarwa-1.png",
+  },
+  {
+    id: 61,
+    projectId: "7",
+    thumbnail: "/sonarwa-2.png",
+  },
+  {
+    id: 62,
+    projectId: "7",
+    thumbnail: "/sonarwa-3.png",
+  },
+  {
+    id: 63,
+    projectId: "7",
+    thumbnail: "/sonarwa-4.png",
+  },
 ];
