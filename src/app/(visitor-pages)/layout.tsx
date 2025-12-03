@@ -7,6 +7,7 @@ import Footer from "@/components/widgets/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ProgressBarProvider from "./ProgressBarProvider";
 import Providers from "../providers";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = localFont({
   src: "../../styles/fonts/GeistVF.woff",
@@ -52,6 +53,7 @@ export default function RootLayout({
           </ThemeProvider>
         </ProgressBarProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
