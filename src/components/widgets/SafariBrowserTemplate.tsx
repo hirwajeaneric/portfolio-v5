@@ -8,7 +8,7 @@ export function SafariBrowserTemplate({ image }: Props) {
     return (
         <Safari
             url="magicui.design"
-            className="size-full"
+            className="size-full bg-zinc-800"
             src={image || ""}
         />
     );

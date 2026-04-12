@@ -1,28 +1,29 @@
 import ContactForm from "@/components/widgets/forms/ContactForm";
 import SocialAccountsGroup from "@/components/widgets/SocialAccountsGroup";
+import { PromoBlock } from "@/components/promo/PromoBlock";
+import { getPromoAds, getSocialLinks } from "@/lib/db-queries";
+import { PromoPlacement } from "@/generated/prisma/enums";
 
 export const metadata = {
   title: "Contact",
   description: "Get in touch with me, and let's discuss how I can help you.",
   keywords: ["contact", "jeanerichirwa", "hirwajeaneric", "Hirwa Jean Eric", "web developer", "portfolio"],
   openGraph: {
-    openGraph: {
-      title: "Contact - Jean Eric Hirwa - Portfolio",
-      description: "Get in touch with me, and let's discuss how I can help you.",
-      url: "https://www.erichirwa.com/contact",
-      siteName: "Jean Eric Hirwa - Contact",
-      images: [
-        {
-          url: "1718313379119.jpeg",
-          width: 800,
-          height: 600,
-        },
-      ],
-      locale: "en-US",
-      type: "website",
-    }
-  }
-}
+    title: "Contact - Jean Eric Hirwa - Portfolio",
+    description: "Get in touch with me, and let's discuss how I can help you.",
+    url: "https://www.erichirwa.com/contact",
+    siteName: "Jean Eric Hirwa - Contact",
+    images: [
+      {
+        url: "1718313379119.jpeg",
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -45,7 +46,10 @@ const jsonLd = {
   }
 }
 
-export default function page() {
+export default async function ContactPage() {
+  const socials = await getSocialLinks();
+  const promos = await getPromoAds([PromoPlacement.CONTACT]);
+  const promo = promos[0];
   const jssStyles = {
     backgroundImage: `linear-gradient(to bottom, rgba(39, 39, 42, 0), rgba(9, 9, 11, 1)), url("/Jean Eric - Image 1 - 684x1000.png")`,
     backgroundSize: 'contain',
@@ -64,12 +68,24 @@ export default function page() {
           <div style={jssStyles} className="hidden md:flex h-screen justify-center w-full md:w-2/5 md:justify-between items-center flex-wrap">
           </div>
           <div className="flex flex-col justify-start items-center md:items-start w-full md:w-3/5 pt-16 md:pt-14 pb-12 md:pb-20">
-            <div className="flex flex-col mt-16 md:mt-32 gap-6 w-full p-6 md:p-14 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
-              <h2 className="text-zinc-400 uppercase">CONTACT</h2>
+            <div className="flex flex-col mt-16 md:mt-32 gap-6 w-full p-6 md:p-14 bg-zinc-800 border border-zinc-700">
+              <h2 className="text-zinc-300 uppercase">CONTACT</h2>
               <h3 className="text-zinc-300 text-4xl leading-normal md:font-light">Let&apos;s get in touch</h3>
               <ContactForm />
             </div>
-            <SocialAccountsGroup />
+            {promo ? (
+              <div className="w-full max-w-3xl mt-8">
+                <PromoBlock
+                  kicker={promo.kicker}
+                  headlineLead={promo.headlineLead}
+                  headlineEmphasis={promo.headlineEmphasis}
+                  body={promo.body}
+                  ctaLabel={promo.ctaLabel}
+                  ctaUrl={promo.ctaUrl}
+                />
+              </div>
+            ) : null}
+            <SocialAccountsGroup accounts={socials} />
           </div>
         </div>
       </section>

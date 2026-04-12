@@ -25,8 +25,8 @@ const getEnvVar = (key: string): string | undefined => {
 export const createTransporter = () => {
   // Access environment variables at runtime using getter function
   // This prevents webpack from statically analyzing and inlining the values
-  const email = getEnvVar('EMAIL');
-  const appPassword = getEnvVar('APP_PASSWORD');
+  const email = getEnvVar("EMAIL");
+  const appPassword = getEnvVar("APP_PASSWORD") || getEnvVar("EMAIL_PASSWORD");
 
   if (!email || !appPassword) {
     // Don't expose environment variable names in error messages

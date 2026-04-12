@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Gallery } from "@/database/galleries";
+import type { GallerySlide } from "@/types/gallery";
 
-export const LayoutGrid = ({ cards }: { cards: Gallery[] }) => {
-    const [selected, setSelected] = useState<Gallery | null>(null);
-    const [lastSelected, setLastSelected] = useState<Gallery | null>(null);
+export const LayoutGrid = ({ cards }: { cards: GallerySlide[] }) => {
+    const [selected, setSelected] = useState<GallerySlide | null>(null);
+    const [lastSelected, setLastSelected] = useState<GallerySlide | null>(null);
 
-    const handleClick = (card: Gallery) => {
+    const handleClick = (card: GallerySlide) => {
         setLastSelected(selected);
         setSelected(card);
     };
@@ -41,7 +41,7 @@ export const LayoutGrid = ({ cards }: { cards: Gallery[] }) => {
                         whileHover={{ scale: selected?.id === card.id ? 1 : 1.02 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
-                        {selected?.id === card.id && <SelectedGallery selected={selected} />}
+                        {selected?.id === card.id && <SelectedGallerySlide selected={selected} />}
                         <ImageComponent card={card} />
                         {selected?.id !== card.id && (
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
@@ -62,7 +62,7 @@ export const LayoutGrid = ({ cards }: { cards: Gallery[] }) => {
     );
 };
 
-const ImageComponent = ({ card }: { card: Gallery }) => {
+const ImageComponent = ({ card }: { card: GallerySlide }) => {
     return (
         <motion.img
             layoutId={`image-${card.id}-image`}
@@ -73,12 +73,12 @@ const ImageComponent = ({ card }: { card: Gallery }) => {
                 "object-cover object-center absolute inset-0 h-full w-full transition-all duration-300",
                 "group-hover:scale-105"
             )}
-            alt={card.name || "Gallery thumbnail"}
+            alt={card.name || "GallerySlide thumbnail"}
         />
     );
 };
 
-const SelectedGallery = ({ selected }: { selected: Gallery | null }) => {
+const SelectedGallerySlide = ({ selected }: { selected: GallerySlide | null }) => {
     return (
         <div className="bg-transparent h-full w-full flex border border-zinc-300 dark:border-zinc-600 flex-col justify-end shadow-2xl relative z-[60] rounded-lg overflow-hidden">
             <motion.div

@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gallery } from "@/database/galleries";
+import type { GallerySlide } from "@/types/gallery";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 
 interface ImageGalleryProps {
-  cards: Gallery[];
+  cards: GallerySlide[];
 }
 
 export const ImageGallery = ({ cards }: ImageGalleryProps) => {

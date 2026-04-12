@@ -1,28 +1,23 @@
-import { getGallery, getWork, getAllWorks } from "@/actions/works";
+import { getGallery, getWork } from "@/actions/works";
+import { sanitizeHtml } from "@/lib/html-sanitizer";
 import { ImageGallery } from "@/components/ui/image-gallery";
+import { TechCell } from "@/components/tech/TechCell";
 import { cn } from "@/lib/utils";
 import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import BlurFade from "@/components/ui/blur-fade";
+import { stripHtmlForMeta } from "@/lib/plain-text";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-// Generate static params for all works
-export async function generateStaticParams() {
-  const works = await getAllWorks();
-  return works.map((work) => ({
-    slug: work.slug
-  }));
-}
-
-// Dynamic metadata generation
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const work = await getWork(params.slug);
+  const { slug } = await params;
+  const work = await getWork(slug);
 
   if (!work) {
     return {
@@ -31,12 +26,16 @@ export async function generateMetadata({
     };
   }
 
+  const plainDescription = work.description
+    ? stripHtmlForMeta(work.description)
+    : `${work.name} project by Jean Eric Hirwa`;
+
   return {
     title: `${work.name} - ${work.category} Project`,
-    description: work.description || `${work.name} project by Jean Eric Hirwa`,
+    description: plainDescription,
     openGraph: {
       title: `${work.name} - Project`,
-      description: work.description || `${work.name} project by Jean Eric Hirwa`,
+      description: plainDescription,
       images: [{
         url: work.image,
         width: 800,
@@ -48,11 +47,12 @@ export async function generateMetadata({
 }
 
 export default async function WorkDetailPage({
-  params
+  params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>;
 }) {
-  const work = await getWork(params.slug);
+  const { slug } = await params;
+  const work = await getWork(slug);
 
   // Early return if work is not found
   if (!work) {
@@ -61,11 +61,8 @@ export default async function WorkDetailPage({
 
   const gallery = await getGallery(work.id);
 
-  // Dynamically calculate available links
-  const availableLinks = [
-    work.otherLinks[0].link,
-    work.otherLinks[1]?.link
-  ].filter(Boolean).length + 2;
+  const linkCount = work.otherLinks.filter((l) => l.link && l.link.length > 0).length;
+  const availableLinks = Math.min(4, 2 + linkCount);
 
   // Prepare JSON-LD structured data
   const jsonLd = {
@@ -102,11 +99,12 @@ export default async function WorkDetailPage({
             {work.name}
           </h1>
 
-          {work.description && (
-            <h2 className="text-center mt-3 md:mt-6 mb-8 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2">
-              {work.description}
-            </h2>
-          )}
+          {work.description ? (
+            <div
+              className="text-center mt-3 md:mt-6 mb-8 md:mb-18 text-base md:text-2xl text-zinc-400 w-5/6 md:w-1/2 mx-auto max-w-4xl leading-relaxed [&_a]:text-blue-400 [&_a]:underline"
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(work.description) }}
+            />
+          ) : null}
 
           <div
             className={cn(
@@ -118,33 +116,17 @@ export default async function WorkDetailPage({
             <ProjectInfoCard title="TIMELINE" value={work.timeline || 'N/A'} />
             <ProjectInfoCard title="CATEGORY" value={work.category || 'N/A'} />
 
-            {work.otherLinks[0].link && (
-              <Link
-                href={work.otherLinks[0].link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ProjectInfoCard
-                  title="SOURCE CODE"
-                  value={work.otherLinks[0].name || 'Unavailable'}
-                  isLink
-                />
+            {work.otherLinks[0]?.link ? (
+              <Link href={work.otherLinks[0].link} target="_blank" rel="noopener noreferrer">
+                <ProjectInfoCard title="SOURCE CODE" value={work.otherLinks[0].name || "Unavailable"} isLink />
               </Link>
-            )}
+            ) : null}
 
-            {work.otherLinks[1]?.link && (
-              <Link
-                href={work.otherLinks[1]?.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ProjectInfoCard
-                  title="LIVE DEMO"
-                  value={work.name || 'Unavailable'}
-                  isLink
-                />
+            {work.otherLinks[1]?.link ? (
+              <Link href={work.otherLinks[1].link} target="_blank" rel="noopener noreferrer">
+                <ProjectInfoCard title="LIVE DEMO" value={work.otherLinks[1].name || work.name} isLink />
               </Link>
-            )}
+            ) : null}
           </div>
 
           {(work.deliverable || work.challenge || work.goal || work.result) && (
@@ -198,26 +180,11 @@ export default async function WorkDetailPage({
 
                 {/* Technologies Grid */}
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6">
-                  {work.technologies.map((tech, index) => {
-                    const IconComponent = tech.icon;
-                    return (
-                      <BlurFade
-                        key={tech.name}
-                        delay={0.02 * index}
-                        inView
-                        className="group"
-                      >
-                        <div className="relative flex flex-col items-center justify-center p-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-300 cursor-default">
-                          <IconComponent
-                            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-300"
-                          />
-                          <span className="mt-2 text-[10px] sm:text-xs text-center text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors duration-300 line-clamp-2 leading-tight">
-                            {tech.name}
-                          </span>
-                        </div>
-                      </BlurFade>
-                    );
-                  })}
+                  {work.technologies.map((tech, index) => (
+                    <BlurFade key={tech.name + index} delay={0.02 * index} inView className="group">
+                      <TechCell name={tech.name} iconKey={tech.iconKey} />
+                    </BlurFade>
+                  ))}
                 </div>
               </div>
             </section>

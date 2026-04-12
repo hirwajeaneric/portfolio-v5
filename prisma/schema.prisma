@@ -1,81 +1,310 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
 }
 
-model Message {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  fullName String
-  email    String
-  message  String
+enum UserRole {
+  ADMIN
+  EDITOR
 }
 
 model User {
-  id            String    @id @map("_id")
-  name          String
-  email         String
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
-
-  @@unique([email])
-  @@map("user")
+  id                   String    @id @default(uuid())
+  email                String    @unique
+  name                 String
+  password             String
+  role                 UserRole  @default(EDITOR)
+  active               Boolean   @default(true)
+  emailVerified        Boolean   @default(false)
+  requirePasswordReset Boolean   @default(false)
+  lastLogin            DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  sessions             Session[]
 }
 
 model Session {
-  id        String   @id @map("_id")
-  expiresAt DateTime
-  token     String
-  createdAt DateTime
-  updatedAt DateTime
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id             String   @id @default(uuid())
+  userId         String
+  token          String   @unique
+  refreshToken   String?  @unique
+  ipAddress      String?
+  userAgent      String?
+  device         String?
+  browser        String?
+  browserVersion String?
+  os             String?
+  osVersion      String?
+  platform       String?
+  isActive       Boolean  @default(true)
+  expiresAt      DateTime
+  lastActivity   DateTime @default(now())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
-  @@map("session")
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
 }
 
-model Account {
-  id                    String    @id @map("_id")
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime
-  updatedAt             DateTime
-
-  @@map("account")
+enum BlogStatus {
+  PUBLISHED
+  DRAFT
 }
 
-model Verification {
-  id         String    @id @map("_id")
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime?
-  updatedAt  DateTime?
+enum CommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SPAM
+}
 
-  @@map("verification")
+model BlogCategory {
+  id        String     @id @default(uuid())
+  name      String
+  slug      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  posts     BlogPost[]
+}
+
+model BlogPost {
+  id              String        @id @default(uuid())
+  title           String
+  slug            String        @unique
+  introduction    String        @db.Text
+  content         String        @db.Text
+  coverImageUrl   String
+  readTime        String        @default("5 min")
+  status          BlogStatus    @default(PUBLISHED)
+  categoryId      String?
+  category        BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  comments        BlogComment[]
+  likes           BlogLike[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryId])
+}
+
+model BlogComment {
+  id         String        @id @default(uuid())
+  postId     String
+  post       BlogPost      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorName String
+  authorEmail String?
+  body       String        @db.Text
+  status     CommentStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@index([postId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model BlogLike {
+  id          String   @id @default(uuid())
+  postId      String
+  post        BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  visitorKey  String
+  createdAt   DateTime @default(now())
+
+  @@unique([postId, visitorKey])
+  @@index([postId])
+}
+
+enum PromoPlacement {
+  HOME
+  ABOUT
+  CONTACT
+  BLOG_POST
+}
+
+model PromoAd {
+  id                String            @id @default(uuid())
+  placements        PromoPlacement[]
+  kicker            String
+  headlineLead      String
+  headlineEmphasis  String
+  body              String            @db.Text
+  ctaLabel          String
+  ctaUrl            String
+  active            Boolean           @default(true)
+  priority          Int               @default(0)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([active])
+}
+
+enum ProjectCategory {
+  Design
+  Web
+  Mobile
+  Writings
+  Startups
+  Software
+  Other
+}
+
+model Project {
+  id           String          @id @default(uuid())
+  name         String
+  slug         String          @unique
+  category     ProjectCategory
+  description  String?         @db.Text
+  deliverable  String?         @db.Text
+  challenge    String?         @db.Text
+  goal         String?         @db.Text
+  result       String?         @db.Text
+  client       String
+  timeline     String
+  link         String
+  imageUrl     String
+  typeLabel    String
+  technologies Json
+  otherLinks   Json
+  gallery      Json
+  published    Boolean         @default(true)
+  sortOrder    Int             @default(0)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@index([slug])
+  @@index([published])
+}
+
+model Technology {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  name      String
+  category  String
+  iconKey   String
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+}
+
+model Service {
+  id               String              @id @default(uuid())
+  name             String
+  slug             String              @unique
+  shortDescription String              @db.Text
+  heroImageUrl     String
+  showOnHome       Boolean             @default(false)
+  homeSortOrder    Int                 @default(0)
+  technologies     Json
+  sections         ServiceSection[]
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@index([slug])
+  @@index([showOnHome])
+}
+
+model ServiceSection {
+  id          String   @id @default(uuid())
+  serviceId   String
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  title       String
+  description String   @db.Text
+  sortOrder   Int      @default(0)
+
+  @@index([serviceId])
+}
+
+model SiteStatistic {
+  id        String   @id @default(uuid())
+  label     String
+  value     String
+  sortOrder Int      @default(0)
+}
+
+enum AwardKind {
+  AWARD
+  CERTIFICATE
+}
+
+model Award {
+  id                   String    @id @default(uuid())
+  kind                 AwardKind
+  title                String
+  issuer               String?
+  description          String?   @db.Text
+  issuedAt             DateTime?
+  attachmentUrl        String?
+  attachmentPublicId   String?
+  thumbnailUrl         String?
+  sortOrder            Int       @default(0)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
+
+model Testimonial {
+  id              String   @id @default(uuid())
+  headline        String?
+  quote           String   @db.Text
+  authorName      String
+  authorRole      String?
+  companyLogoUrl  String?
+  avatarUrl       String?
+  featured        Boolean  @default(false)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  company     String
+  title       String
+  location    String?
+  startDate   String
+  endDate     String?
+  current     Boolean  @default(false)
+  bullets     Json
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+model ContactMessage {
+  id         String        @id @default(uuid())
+  fullName   String
+  email      String
+  message    String        @db.Text
+  status     ContactStatus @default(NEW)
+  adminNotes String?       @db.Text
+  repliedAt  DateTime?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SiteSettings {
+  id             String   @id @default("default")
+  siteName       String?
+  socialLinks    Json?
+  iconCloudSlugs Json?
+  updatedAt      DateTime @updatedAt
 }
